@@ -161,10 +161,9 @@ public class ListSimpleLinkedFull <D extends Comparable<D>> implements ListTAD<D
         public void remove() { throw new UnsupportedOperationException();  }
     }
 	
-	public boolean add(D element)
+	public void add(D element)
 	{
 		Node novo = new Node(element, null);
-		boolean res = true;
 		
 		if (refHead == null)
 		{
@@ -177,10 +176,9 @@ public class ListSimpleLinkedFull <D extends Comparable<D>> implements ListTAD<D
 		}
 		
 		qtdElem++;
-		return res;
 	}
 
-	public boolean addFirst(D d) {
+	public void addFirst(D d) {
 		Node novo = new Node(d, refHead);
 		boolean res = true;
 		
@@ -190,12 +188,10 @@ public class ListSimpleLinkedFull <D extends Comparable<D>> implements ListTAD<D
 		refHead = novo;
 		
 		qtdElem++;
-		return res;
 	}
 
-	public boolean addLast(D d) { 
+	public void addLast(D d) { 
 		Node novo = new Node(d, null);
-		boolean res = true;
 		
 		if (refTail == null)
 			refHead = refTail = novo;
@@ -203,16 +199,14 @@ public class ListSimpleLinkedFull <D extends Comparable<D>> implements ListTAD<D
 			refTail.setNext(novo);
 			
 		qtdElem++;
-		return res;
 	}
 
 
 	
-	public boolean add(int index, D element)
+	public void add(int index, D element)
 	{
 		Node ant, novo, prox = null;
 		int i;
-		boolean res = true;
 		
 		if ((index >= 0) && (index <= qtdElem)) {
 			novo = new Node();
@@ -238,9 +232,7 @@ public class ListSimpleLinkedFull <D extends Comparable<D>> implements ListTAD<D
 			qtdElem++;
 		}
 		else
-			res = false;
-		
-		return res;
+			throw new IllegalArgumentException("Índice inválido -> " + index);
 	}
 
 	public D removeFirst() {
@@ -435,19 +427,16 @@ public class ListSimpleLinkedFull <D extends Comparable<D>> implements ListTAD<D
 	    return res;
 	}
 
-	public boolean set(int index, D element) {
+	public void set(int index, D element) {
 		Node aux = refHead;
-		boolean res = true;
-		
+				
 		for (int i = 0; aux != null && i < index; i++)
 			aux = aux.getNext();
 		
 		if (aux != null)
 			aux.setElem(element);
 		else
-			res = false;
-		
-		return res;
+			throw new IndexOutOfBoundsException("Nodo inválido!");
 	}
 
 	public D search(D ob)
@@ -526,10 +515,9 @@ public class ListSimpleLinkedFull <D extends Comparable<D>> implements ListTAD<D
 	public String toString() {
 		Node aux = refHead;
 		String res = "";
-		int tot = size();
 		
-		for (int i = 0; i < tot; i++) {
-			res = res + aux.getElem().toString();
+		while(aux != null) {
+			res = res + aux.getElem().toString() + " ";
 			aux = aux.getNext();
 		}
 		

@@ -3,6 +3,7 @@ package br.pucrs.adt.tests.progs;
 import java.util.*;
 
 import br.pucrs.adt.OldTrees.*;
+import br.pucrs.adt.OldTrees.BinaryTreeLinked;
 import br.pucrs.adt.*;
 
 public class TestaArvBinABP {

@@ -12,7 +12,7 @@ public interface ListTADFull <E extends Comparable<E>> {
 	 * @param element Elemento a ser adicionado. 
 	 * @return true se a operação funcionou, false caso contrário.
 	 */
-	public boolean add(E element);
+	public void add(E element);
 	
 	
 	/**********
@@ -21,7 +21,7 @@ public interface ListTADFull <E extends Comparable<E>> {
 	 * @param element Elemento a ser adicionado. 
 	 * @return true se a operação funcionou, false caso contrário.
 	 */
-	public boolean add(int index, E element);
+	public void add(int index, E element);
 	
 	
 	/**********
@@ -52,7 +52,7 @@ public interface ListTADFull <E extends Comparable<E>> {
 	 * @param element Elemento a ser armazenado na lista.
 	 * @return true se a operação funcionou, false caso contrário. 
 	 */	
-	public boolean set(int index, E element);
+	public void set(int index, E element);
 	
 	
 	/**********

@@ -1,8 +1,8 @@
 package br.pucrs.adt.tests.progs;
 import java.util.ArrayList;
 
-import br.pucrs.adt.OldTrees.AVL;
-import br.pucrs.adt.OldTrees.AVLLinked;
+import br.pucrs.adt.AVL;
+import br.pucrs.adt.AVLLinked;
 
 public class TestaAVL
 {

@@ -466,20 +466,37 @@ public class GeneralTreeLinked<E extends Comparable<E>> implements GeneralTreeTA
 		String tabs;
 		
 		if (n != null){
-			str.append("tree(" + n.getItem());
+			str.append("tree(");
+			str.append(n.getItem());
 
 			level++;
 			for (int i = 0; i < n.subtrees.size(); i++){
 				str.append(",");
-				
-				tabFill(tabs, level);
-				
-				toStringFunc(n.subtrees.get(i), str);
+				if (i == 0) {
+					str.append("\n");
+					tabs = tabFill(level);
+//					str.append("\n");
+					str.append(tabs);
+				}
+				toStringFunc(n.subtrees.get(i), str, level);
 			}
 			
 			level--;
-			tabFill(tabs, level);
 			str.append(")");
+//			str.append(",");
+			tabs = tabFill(level);
+//			str.append("\n");
+//			str.append(tabs);
+
 		}
+	}
+	
+	String tabFill(int level) {
+		String res = "";
+		
+		for (int i = 0; i <= level; i++)
+			res += "   ";
+		
+		return res;
 	}
 }

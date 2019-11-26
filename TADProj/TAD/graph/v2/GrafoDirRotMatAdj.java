@@ -1,4 +1,4 @@
-package TAD.graph.v2;
+package graph.v2;
 
 import java.util.*;
 
