@@ -46,7 +46,7 @@ public class ListTADTest {
 		myList.add("2");
 		myList.add("3");
 		myList.add("4");
-		assertEquals("01234", myList.toString());
+		assertEquals("0 1 2 3 4 ", myList.toString());
 		assertEquals("Ultimo Elem:", "4", myList.getLast());
 	}
 
@@ -162,7 +162,21 @@ public class ListTADTest {
 		assertEquals("Qtde 2:", 2, myList.size());
 	}
 	
-	@Test(expected=IndexOutOfBoundsException.class)
+	@Test
+	public final void testAddLastAlt() {
+		myList.addLast("0");
+		assertEquals("Primeiro Elem:", "0", myList.getFirst());
+		assertEquals("Ultimo Elem:", "0", myList.getLast());
+		assertEquals("Qtde 1:", 1, myList.size());
+		
+		myList.addLast("1");
+		assertEquals("Primeiro Elem:", "0", myList.getFirst());
+		assertEquals("Ultimo Elem:", "1", myList.getLast());
+
+		assertEquals("Qtde 2:", 2, myList.size());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public final void testAddIntD0() {
 		myList.add(1, "1");
 	}

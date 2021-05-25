@@ -252,6 +252,27 @@ public class GeneralTreeLinked<E extends Comparable<E>> implements GeneralTreeTA
 		return rem;
 	}
 
+	public boolean remove(E element) {
+		Node<E> nAux = null;
+		Node<E> father = null;
+		boolean rem = false;
+		if (refRoot != null) {
+			if (refRoot.getItem().equals(element)) {
+				refRoot = null;
+				rem = true;
+			}
+			else {
+				nAux = searchNodeRef(element, refRoot);
+				if (nAux != null) {
+					father = nAux.getFather();
+					father.removeSubtree(nAux);
+					rem = true;
+				}
+			}
+		}
+		return rem;
+	}
+	
 	public E set(E old, E element) {
 		E res = null;
 		Node<E> nAux = searchNodeRef(old, refRoot);
@@ -456,40 +477,53 @@ public class GeneralTreeLinked<E extends Comparable<E>> implements GeneralTreeTA
 		if (refRoot == null)
 			res = null;
 		else {
-			toStringFunc(refRoot, str, level);
+//			toStringFunc(refRoot, str, level);
+			toStringFunc(refRoot, str);
 			res = str.toString();
 		}
 		return res;
 	}
 
-	private void toStringFunc(Node<E> n, StringBuilder str, int level) {
-		String tabs;
-		
+//	private void toStringFunc(Node<E> n, StringBuilder str, int level) {
+//		String tabs;
+//		
+//		if (n != null){
+//			str.append("tree(");
+//			str.append(n.getItem());
+//
+//			level++;
+//			for (int i = 0; i < n.subtrees.size(); i++){
+//				str.append(",");
+//				if (i == 0) {
+//					str.append("\n");
+//					tabs = tabFill(level);
+////					str.append("\n");
+//					str.append(tabs);
+//				}
+//				toStringFunc(n.subtrees.get(i), str, level);
+//			}
+//			
+//			level--;
+//			str.append(")");
+////			str.append(",");
+//			tabs = tabFill(level);
+////			str.append("\n");
+////			str.append(tabs);
+//
+//		}
+//	}
+	
+	private void toStringFunc(Node<E> n, StringBuilder str) {
 		if (n != null){
-			str.append("tree(");
 			str.append(n.getItem());
 
-			level++;
 			for (int i = 0; i < n.subtrees.size(); i++){
 				str.append(",");
-				if (i == 0) {
-					str.append("\n");
-					tabs = tabFill(level);
-//					str.append("\n");
-					str.append(tabs);
-				}
-				toStringFunc(n.subtrees.get(i), str, level);
+				toStringFunc(n.subtrees.get(i), str);
 			}
-			
-			level--;
-			str.append(")");
-//			str.append(",");
-			tabs = tabFill(level);
-//			str.append("\n");
-//			str.append(tabs);
-
 		}
 	}
+	
 	
 	String tabFill(int level) {
 		String res = "";

@@ -33,8 +33,8 @@ public static void mostraLista(ListTAD <String> l)
 		ObjectInputStream oEntrada = null;
 
 									//
-//		ListTAD <String> l = new ListSimpleLinked<>();	// = new SUA CLASSE AQUI;
-		ListTAD <String> l = new ListArray<>(100);	// = new SUA CLASSE AQUI;
+		ListTAD <String> l = new ListSimpleLinkedFull<>();	// = new SUA CLASSE AQUI;
+//		ListTAD <String> l = new ListArray<>(100);	// = new SUA CLASSE AQUI;
 									//
 		String s1 = new String("a");
 		String s2 = new String("b");

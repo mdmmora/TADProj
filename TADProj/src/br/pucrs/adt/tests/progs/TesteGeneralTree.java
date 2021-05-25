@@ -29,11 +29,13 @@ public class TesteGeneralTree {
 		arvore.add("Q", "H");
 		arvore.add("R", "H");
 		
-		System.out.println("To String \n" + arvore.toString());
+//		System.out.println("To String \n" + arvore.toString());
 //		System.out.println(arvore.count());
 //		System.out.println("Pre-ordem:" + arvore.traversalPre());
 //		System.out.println("Pos-ordem:" + arvore.traversalPos());
-//		System.out.println("Largura:" + arvore.traversalWidth());
+		System.out.println("Largura:" + arvore.traversalWidth());
+		arvore. removeBranch("H");
+		System.out.println("Largura:" + arvore.traversalWidth());
 //		
 //		System.out.println("Amplitude com iterador: ");
 //		for (String s:arvore) 

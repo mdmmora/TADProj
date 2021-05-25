@@ -18,10 +18,10 @@ public class TestaArv {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		FileOutputStream saida = null;
-		ObjectOutputStream oSaida = null;
-		FileInputStream entrada = null;
-		ObjectInputStream oEntrada = null;
+//		FileOutputStream saida = null;
+//		ObjectOutputStream oSaida = null;
+//		FileInputStream entrada = null;
+//		ObjectInputStream oEntrada = null;
 
 
 		GeneralTreeLinked <String> arv1 = new GeneralTreeLinked<String>();
@@ -72,27 +72,30 @@ H		           I  J  K
 		System.out.println("Traversal Pos:");
 		System.out.println(arv1.traversalPos().toString());
 		
-		System.out.println("Count:");
-		System.out.println(arv1.count());
+		System.out.println("toString:");
+		System.out.println(arv1.toString());
 		
-		
-		System.out.println("\nElementos Internos:");
-		resVet = arv1.getInternalElelments();
-		for (String aux:resVet)
-			System.out.print(aux + " ");
-
-		System.out.println("\nPath Size:");
-		System.out.println("A -> " + arv1.getPathSize("A"));
-		System.out.println("B -> " + arv1.getPathSize("B"));
-		System.out.println("C -> " + arv1.getPathSize("C"));
-		System.out.println("D -> " + arv1.getPathSize("D"));
-		System.out.println("E -> " + arv1.getPathSize("E"));
-		System.out.println("F -> " + arv1.getPathSize("F"));
-		System.out.println("G -> " + arv1.getPathSize("G"));
-		System.out.println("H -> " + arv1.getPathSize("H"));
-		System.out.println("I -> " + arv1.getPathSize("I"));
-		System.out.println("J -> " + arv1.getPathSize("J"));
-		System.out.println("K -> " + arv1.getPathSize("K"));
+//		System.out.println("Count:");
+//		System.out.println(arv1.count());
+//		
+//		
+//		System.out.println("\nElementos Internos:");
+//		resVet = arv1.getInternalElelments();
+//		for (String aux:resVet)
+//			System.out.print(aux + " ");
+//
+//		System.out.println("\nPath Size:");
+//		System.out.println("A -> " + arv1.getPathSize("A"));
+//		System.out.println("B -> " + arv1.getPathSize("B"));
+//		System.out.println("C -> " + arv1.getPathSize("C"));
+//		System.out.println("D -> " + arv1.getPathSize("D"));
+//		System.out.println("E -> " + arv1.getPathSize("E"));
+//		System.out.println("F -> " + arv1.getPathSize("F"));
+//		System.out.println("G -> " + arv1.getPathSize("G"));
+//		System.out.println("H -> " + arv1.getPathSize("H"));
+//		System.out.println("I -> " + arv1.getPathSize("I"));
+//		System.out.println("J -> " + arv1.getPathSize("J"));
+//		System.out.println("K -> " + arv1.getPathSize("K"));
 
 	}
 }
