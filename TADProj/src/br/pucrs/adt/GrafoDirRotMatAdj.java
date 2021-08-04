@@ -286,34 +286,35 @@ public class GrafoDirRotMatAdj<N, A> {
 	/* (non-Javadoc)
 	 * @see TAD.graph.GraphTAD#wfs(N)
 	 */
-
-	public List<N> traversalWidth(N orig) {
-		List<N> result = new ArrayList<N>();
-		Queue<Node<N>> fAux = new LinkedList<Node<N>>();
-		Node<N> nAux;
-		int index;
-
-		index = this.indexOfNode(orig);
-		if (index == -1)
-			throw new IllegalArgumentException("InvNod");
-		else {	this.unMarkAllNodes();
-
-		result.add(nodeList.get(index).getElem());
-		fAux.offer(nodeList.get(index));
-		nodeList.get(index).mark();
-
-		while(!fAux.isEmpty()) {
-			nAux = fAux.poll();
-
-			for(Node<N> v:this.getAllNeighbours(nAux.getElem()))
-				if (!v.isMarked()) {
-					result.add(v.getElem());
-					v.mark();
-					fAux.offer(v);  }
-		}
-		}
-		return result;
-	}
+//  ==> To review
+//
+//	public List<N> traversalWidth(N orig) {
+//		List<N> result = new ArrayList<N>();
+//		Queue<Node<N>> fAux = new LinkedList<Node<N>>();
+//		Node<N> nAux;
+//		int index;
+//
+//		index = this.indexOfNode(orig);
+//		if (index == -1)
+//			throw new IllegalArgumentException("InvNod");
+//		else {	this.unMarkAllNodes();
+//
+//		result.add(nodeList.get(index).getElem());
+//		fAux.offer(nodeList.get(index));
+//		nodeList.get(index).mark();
+//
+//		while(!fAux.isEmpty()) {
+//			nAux = fAux.poll();
+//
+//			for(Node<N> v:this.getAllNeighbours(nAux.getElem()))
+//				if (!v.isMarked()) {
+//					result.add(v.getElem());
+//					v.mark();
+//					fAux.offer(v);  }
+//		}
+//		}
+//		return result;
+//	}
 
 	/**********************************
 	Algo: Dijkstra  -  SSSP(G, v)
@@ -338,59 +339,60 @@ public class GrafoDirRotMatAdj<N, A> {
 		}
 	RETORNE o r�tulo D[u] de cada v�rtice u
 	 **********************************/
-
-	public DijkstraResult<N> dijkstraMinimumPath_v1(N orig){
-		DijkstraResult<N> res = new DijkstraResult<N>(orig);
-		PriorityQueueTAD<PQNodeDijkstra<Integer, Double>> queue = new PriorityQueue<PQNodeDijkstra<Integer, Double>>(nodeList.size());
-		int indexOrig = this.indexOfNode(orig);
-		PQNodeDijkstra<Integer, Double> uNode;
-
-		//Inicializa a tabela de pesos e
-		//Inicializa Priority Queue. Nesta implementa��o
-		//  os pesos est�o junto do elemento na PriorityQueue, al�m de
-		//  estarem em um ArrayList separado
-		//
-		//No algoritmo:
-		//Inicialize D[v] = 0 e D[u] = +infinito para cada u!=v
-		//FilaPrioridade Q = todos os v�rtices u de G usando os labels D[u] como chave
-		for (int i = 0; i < nodeList.size(); i++)
-			if (i != indexOrig) {
-				queue.offer(new PQNodeDijkstra<Integer, Double>(i, Double.MAX_VALUE));
-				res.addNode(nodeList.get(i).getElem(), null, Double.MAX_VALUE);
-			}
-			else {
-				queue.offer(new PQNodeDijkstra<Integer, Double>(i, 0.0));
-				res.addNode(nodeList.get(i).getElem(), null,0.0);
-			}
-
-		while (!queue.isEmpty()) {
-			uNode = queue.poll();
-
-			for (int colAdjacente = 0; colAdjacente < nodeList.size(); colAdjacente++)    // Percorrendo a coluna da Matriz para achar adjacentes
-				if (matAdj[uNode.getNodePos()][colAdjacente] != null)   //    Achou uma aresta -> � adejacente.
-					for (PQNodeDijkstra<Integer, Double> n:queue)  //  Verificando se o adjacente est� la fila de nodos n�o resolvidos
-						if (n.getNodePos() == colAdjacente) {  // Sim, est�! Tenta relaxar o nodo -> acertar peso e nodo anterior, se for o caso.
-							Double pesoNodoCorrente = uNode.getNodeWeight();
-							int posicaoNodoCorrente = uNode.getNodePos();
-							N elementoNodoAdjacente = nodeList.get(colAdjacente).getElem();
-							N elementoNodoCorrente = nodeList.get(uNode.getNodePos()).getElem();
-
-							if ((pesoNodoCorrente + (Double)matAdj[posicaoNodoCorrente][colAdjacente]) <
-								res.getCost(elementoNodoAdjacente)){
-
-								queue.remove(new PQNodeDijkstra<Integer, Double>(colAdjacente, -1.0));
-								res.setNode(elementoNodoAdjacente, elementoNodoCorrente,
-												pesoNodoCorrente + (Double)matAdj[posicaoNodoCorrente][colAdjacente]);
-								queue.offer(new PQNodeDijkstra<Integer, Double>(colAdjacente,
-																				res.getCost(elementoNodoAdjacente)));
-
-							}
-							break;
-						}
-		}
-
-		return res;
-	}
+//==> To review
+//
+//	public DijkstraResult<N> dijkstraMinimumPath_v1(N orig){
+//		DijkstraResult<N> res = new DijkstraResult<N>(orig);
+//		PriorityQueueTAD<PQNodeDijkstra<Integer, Double>> queue = new PriorityQueue<PQNodeDijkstra<Integer, Double>>(nodeList.size());
+//		int indexOrig = this.indexOfNode(orig);
+//		PQNodeDijkstra<Integer, Double> uNode;
+//
+//		//Inicializa a tabela de pesos e
+//		//Inicializa Priority Queue. Nesta implementa��o
+//		//  os pesos est�o junto do elemento na PriorityQueue, al�m de
+//		//  estarem em um ArrayList separado
+//		//
+//		//No algoritmo:
+//		//Inicialize D[v] = 0 e D[u] = +infinito para cada u!=v
+//		//FilaPrioridade Q = todos os v�rtices u de G usando os labels D[u] como chave
+//		for (int i = 0; i < nodeList.size(); i++)
+//			if (i != indexOrig) {
+//				queue.offer(new PQNodeDijkstra<Integer, Double>(i, Double.MAX_VALUE));
+//				res.addNode(nodeList.get(i).getElem(), null, Double.MAX_VALUE);
+//			}
+//			else {
+//				queue.offer(new PQNodeDijkstra<Integer, Double>(i, 0.0));
+//				res.addNode(nodeList.get(i).getElem(), null,0.0);
+//			}
+//
+//		while (!queue.isEmpty()) {
+//			uNode = queue.poll();
+//
+//			for (int colAdjacente = 0; colAdjacente < nodeList.size(); colAdjacente++)    // Percorrendo a coluna da Matriz para achar adjacentes
+//				if (matAdj[uNode.getNodePos()][colAdjacente] != null)   //    Achou uma aresta -> � adejacente.
+//					for (PQNodeDijkstra<Integer, Double> n:queue)  //  Verificando se o adjacente est� la fila de nodos n�o resolvidos
+//						if (n.getNodePos() == colAdjacente) {  // Sim, est�! Tenta relaxar o nodo -> acertar peso e nodo anterior, se for o caso.
+//							Double pesoNodoCorrente = uNode.getNodeWeight();
+//							int posicaoNodoCorrente = uNode.getNodePos();
+//							N elementoNodoAdjacente = nodeList.get(colAdjacente).getElem();
+//							N elementoNodoCorrente = nodeList.get(uNode.getNodePos()).getElem();
+//
+//							if ((pesoNodoCorrente + (Double)matAdj[posicaoNodoCorrente][colAdjacente]) <
+//								res.getCost(elementoNodoAdjacente)){
+//
+//								queue.remove(new PQNodeDijkstra<Integer, Double>(colAdjacente, -1.0));
+//								res.setNode(elementoNodoAdjacente, elementoNodoCorrente,
+//												pesoNodoCorrente + (Double)matAdj[posicaoNodoCorrente][colAdjacente]);
+//								queue.offer(new PQNodeDijkstra<Integer, Double>(colAdjacente,
+//																				res.getCost(elementoNodoAdjacente)));
+//
+//							}
+//							break;
+//						}
+//		}
+//
+//		return res;
+//	}
 
 
 	private double edgeCost(int i, int j) {

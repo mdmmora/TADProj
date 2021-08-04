@@ -395,55 +395,56 @@ public class GrafoDirRotLisAdj<N, A> {
 		}
 	RETORNE o r�tulo D[u] de cada v�rtice u
 	 **********************************/
-
-	public DijkstraResult<N> dijkstraMinimumPath_v1(N orig){
-		DijkstraResult<N> res = new DijkstraResult<N>(orig);
-		PriorityQueueTAD<PQNodeDijkstra<Node<N, A>, Double>> queue = new PriorityQueue<PQNodeDijkstra<Node<N,A>, Double>>(nodeList.size());
-		int indexOrig = this.indexOfNode(orig);
-		PQNodeDijkstra<Node<N,A>, Double> uNode;
-
-		//Inicializa a tabela de pesos e
-		//Inicializa Priority Queue. Nesta implementa��o
-		//  os pesos est�o junto do elemento na PriorityQueue, al�m de
-		//  estarem em um ArrayList separado
-		//
-		//No algoritmo:
-		//Inicialize D[v] = 0 e D[u] = +infinito para cada u!=v
-		//FilaPrioridade Q = todos os v�rtices u de G usando os labels D[u] como chave
-		for (int i = 0; i < nodeList.size(); i++)
-			if (i != indexOrig) {
-				queue.offer(new PQNodeDijkstra<Node<N,A>, Double>(nodeList.get(i), Double.MAX_VALUE));
-				res.addNode(nodeList.get(i).getElem(), null, Double.MAX_VALUE);
-			}
-			else {
-				queue.offer(new PQNodeDijkstra<Node<N,A>, Double>(nodeList.get(i), 0.0));
-				res.addNode(nodeList.get(i).getElem(), null,0.0);
-			}
-
-		while (!queue.isEmpty()) {
-			uNode = queue.poll();
-			Double pesoNodoCorrente = uNode.getNodeWeight();
-			Node<N,A> nodoCorrente = uNode.getNodePos();
-
-			for (Edge<N, A> edg:nodoCorrente.getLstAdj()) //Percorre a lista de adjacentes do nodo corrente
-				for (PQNodeDijkstra<Node<N,A>, Double> n:queue)  //  Verificando se o adjacente est� la fila de nodos n�o resolvidos
-					if (n.getNodePos().getElem().equals(edg.getDest().getElem())) {  // Sim, est�! Tenta relaxar o nodo -> acertar peso e nodo anterior, se for o caso.
-						N elementoNodoAdjacente = edg.getDest().getElem();
-						N elementoNodoCorrente = uNode.getNodePos().getElem();
-
-						if ((pesoNodoCorrente + (Double)edg.getLabel()) < res.getCost(elementoNodoAdjacente)){
-
-							queue.remove(new PQNodeDijkstra<Node<N,A>, Double>(n.getNodePos(), -1.0));
-							res.setNode(elementoNodoAdjacente, elementoNodoCorrente, pesoNodoCorrente + (Double)edg.getLabel());
-							queue.offer(new PQNodeDijkstra<Node<N,A>, Double>(n.getNodePos(), res.getCost(elementoNodoAdjacente)));
-
-						}
-						break;
-					}
-		}
-
-		return res;
-	}
+// ====> to review
+	
+//	public DijkstraResult<N> dijkstraMinimumPath_v1(N orig){
+//		DijkstraResult<N> res = new DijkstraResult<N>(orig);
+//		PriorityQueueTAD<PQNodeDijkstra<Node<N, A>, Double>> queue = new PriorityQueue<PQNodeDijkstra<Node<N,A>, Double>>(nodeList.size());
+//		int indexOrig = this.indexOfNode(orig);
+//		PQNodeDijkstra<Node<N,A>, Double> uNode;
+//
+//		//Inicializa a tabela de pesos e
+//		//Inicializa Priority Queue. Nesta implementa��o
+//		//  os pesos est�o junto do elemento na PriorityQueue, al�m de
+//		//  estarem em um ArrayList separado
+//		//
+//		//No algoritmo:
+//		//Inicialize D[v] = 0 e D[u] = +infinito para cada u!=v
+//		//FilaPrioridade Q = todos os v�rtices u de G usando os labels D[u] como chave
+//		for (int i = 0; i < nodeList.size(); i++)
+//			if (i != indexOrig) {
+//				queue.offer(new PQNodeDijkstra<Node<N,A>, Double>(nodeList.get(i), Double.MAX_VALUE));
+//				res.addNode(nodeList.get(i).getElem(), null, Double.MAX_VALUE);
+//			}
+//			else {
+//				queue.offer(new PQNodeDijkstra<Node<N,A>, Double>(nodeList.get(i), 0.0));
+//				res.addNode(nodeList.get(i).getElem(), null,0.0);
+//			}
+//
+//		while (!queue.isEmpty()) {
+//			uNode = queue.poll();
+//			Double pesoNodoCorrente = uNode.getNodeWeight();
+//			Node<N,A> nodoCorrente = uNode.getNodePos();
+//
+//			for (Edge<N, A> edg:nodoCorrente.getLstAdj()) //Percorre a lista de adjacentes do nodo corrente
+//				for (PQNodeDijkstra<Node<N,A>, Double> n:queue)  //  Verificando se o adjacente est� la fila de nodos n�o resolvidos
+//					if (n.getNodePos().getElem().equals(edg.getDest().getElem())) {  // Sim, est�! Tenta relaxar o nodo -> acertar peso e nodo anterior, se for o caso.
+//						N elementoNodoAdjacente = edg.getDest().getElem();
+//						N elementoNodoCorrente = uNode.getNodePos().getElem();
+//
+//						if ((pesoNodoCorrente + (Double)edg.getLabel()) < res.getCost(elementoNodoAdjacente)){
+//
+//							queue.remove(new PQNodeDijkstra<Node<N,A>, Double>(n.getNodePos(), -1.0));
+//							res.setNode(elementoNodoAdjacente, elementoNodoCorrente, pesoNodoCorrente + (Double)edg.getLabel());
+//							queue.offer(new PQNodeDijkstra<Node<N,A>, Double>(n.getNodePos(), res.getCost(elementoNodoAdjacente)));
+//
+//						}
+//						break;
+//					}
+//		}
+//
+//		return res;
+//	}
 
 
 	public String toString(){

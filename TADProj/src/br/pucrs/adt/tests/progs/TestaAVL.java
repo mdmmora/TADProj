@@ -1,8 +1,8 @@
 package br.pucrs.adt.tests.progs;
 import java.util.ArrayList;
 
-import br.pucrs.adt.AVL;
 import br.pucrs.adt.AVLLinked;
+import review.AVL;
 
 public class TestaAVL
 {
