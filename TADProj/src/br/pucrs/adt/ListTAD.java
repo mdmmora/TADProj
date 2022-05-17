@@ -3,69 +3,69 @@ import java.util.*;
 
 /*********
  * Interface para o T.A.D. Lista.
- * @author Michael da Costa Móra
+ * @author Michael da Costa MÃ³ra
  * @param <E> Tipo dos dados armazenados na lista.
  */
 public interface ListTAD<E> {
 	/**********
-	 * Adiciona um elemento na última posição da lista.
+	 * Adiciona um elemento na Ãºltima posiÃ§Ã£o da lista.
 	 * @param element Elemento a ser adicionado. 
-	 * @return true se a operação funcionou, false caso contrário.
+	 * @return true se a operaÃ§Ã£o funcionou, false caso contrÃ³rio.
 	 */
 	public void add(E element);
 	
 	
 	/**********
-	 * Adiciona o elemento fornecido em uma dada posição da lista.
-	 * @param index Posição da lista.
+	 * Adiciona o elemento fornecido em uma dada posiÃ§Ã£o da lista.
+	 * @param index posiÃ§Ã£o da lista.
 	 * @param element Elemento a ser adicionado. 
-	 * @return true se a operação funcionou, false caso contrário.
+	 * @return true se a operaÃ§Ã£o funcionou, false caso contrÃ³rio.
 	 */
 	public void add(int index, E element);
 	
 	
 	/**********
-	 * Remove o elemento armazenado na posição fornecida da lista.
-	 * @param pos Posição da lista. 
+	 * Remove o elemento armazenado na posiÃ§Ã£o fornecida da lista.
+	 * @param pos posiÃ§Ã£o da lista. 
 	 */
 	public E remove(int pos);
 
 	
 	/**********
-	 * Remove a primeira ocorrência de um dado elemento da lista.
+	 * Remove a primeira ocorrÃ³ncia de um dado elemento da lista.
 	 * @param element Elemento a ser adicionado. 
 	 */
 	public E remove(E element);
 	
 	
 	/**********
-	 * Recupera o elemento armazenado em uma dada posição da lista.
-	 * @param pos Posição do elemento na lista.
+	 * Recupera o elemento armazenado em uma dada posiÃ§Ã£o da lista.
+	 * @param pos posiÃ§Ã£o do elemento na lista.
 	 * @return Elemento armazenado na lista. 
 	 */	
 	public E get(int pos);
 	
 	
 	/**********
-	 * Atualiza a posição fornecida da lista, com o elemento fornecido.
-	 * @param index Posição da lista.
+	 * Atualiza a posiÃ§Ã£o fornecida da lista, com o elemento fornecido.
+	 * @param index posiÃ§Ã£o da lista.
 	 * @param element Elemento a ser armazenado na lista.
-	 * @return true se a operação funcionou, false caso contrário. 
+	 * @return true se a operaÃ§Ã£o funcionou, false caso contrÃ³rio. 
 	 */	
 	public void set(int index, E element);
 	
 	
 	/**********
-	 * Procura um elemento na lista, e retorna sua ocorrência.
+	 * Procura um elemento na lista, e retorna sua ocorrÃ³ncia.
 	 * @param element Elemento a ser procurado.
-	 * @return referência para o elemento armazenado na lista. 
+	 * @return referÃ³ncia para o elemento armazenado na lista. 
 	 */	
 	public E search(E element);
 	
 	
 	/**********
-	 * Verifica se a lista está vazia.
-	 * @return true se a lista está vazia, false caso contrário. 
+	 * Verifica se a lista estÃ³ vazia.
+	 * @return true se a lista estÃ³ vazia, false caso contrÃ³rio. 
 	 */		
 	public boolean isEmpty();
 	
@@ -78,8 +78,8 @@ public interface ListTAD<E> {
 	
 	
 	/********
-	 * Conta quantas ocorrências de um dado elemento estão armazenadas na lista.
-	 * @return A quantidade de ocorrências do elemento fornecido.
+	 * Conta quantas ocorrÃ³ncias de um dado elemento estÃ³o armazenadas na lista.
+	 * @return A quantidade de ocorrÃ³ncias do elemento fornecido.
 	 */	
 	public int count(E element);
 	
@@ -91,56 +91,56 @@ public interface ListTAD<E> {
 	
 	
 	/**********
-	 * Retorna uma representação textual do conteúdo da lista.
-	 * @return Um String com o conteúdo da lista. 
+	 * Retorna uma representaÃ³Ã³o textual do conteÃ³do da lista.
+	 * @return Um String com o conteÃ³do da lista. 
 	 */		
 	public String toString();
 
 	
 	/**********
-	 * Métodos adicionais, para fins didáticos. 
+	 * MÃ³todos adicionais, para fins didÃ³ticos. 
 	 *********/
 	
 	
 	/********
-	 * Adiciona um elemento na primeira posição da lista.
+	 * Adiciona um elemento na primeira posiÃ§Ã£o da lista.
 	 * @param element Elemento a ser adicionado.
-	 * @return true se a operação funcionou, false caso contrário.	
+	 * @return true se a operaÃ§Ã£o funcionou, false caso contrÃ³rio.	
 	 */
 	public void addFirst(E element);
 
 	
 	/**********
-	 * Adiciona um elemento na última posição da lista.
+	 * Adiciona um elemento na Ãºltima posiÃ§Ã£o da lista.
 	 * @param element Elemento a ser adicionado. 
-	 * @return true se a operação funcionou, false caso contrário.
+	 * @return true se a operaÃ§Ã£o funcionou, false caso contrÃ³rio.
 	 */
 	public void addLast(E element);
 	
 	
 	/********
-	 * Remove o elemento armazenado na primeira posição da lista.
+	 * Remove o elemento armazenado na primeira posiÃ§Ã£o da lista.
 	 * @return Elemento removido da lista.
 	 */
 	public E removeFirst();
 
 	
 	/********
-	 * Remove o elemento armazenado na última posição da lista.
+	 * Remove o elemento armazenado na Ãºltima posiÃ§Ã£o da lista.
 	 * @return Elemento removido da lista.
 	 */
 	public E removeLast();
 
 	
 	/********
-	 * Recupera o elemento armazenado na primeira posição da lista.
+	 * Recupera o elemento armazenado na primeira posiÃ§Ã£o da lista.
 	 * @return Elemento armazenado na lista.
 	 */
 	public E getFirst();
 
 	
 	/********
-	 * Recupera o elemento armazenado na última posição da lista.
+	 * Recupera o elemento armazenado na Ãºltima posiÃ§Ã£o da lista.
 	 * @return Elemento armazenado na lista.
 	 */
 	public E getLast();	

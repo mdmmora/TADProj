@@ -6,8 +6,8 @@ import java.io.Serializable;
 import javax.naming.OperationNotSupportedException;
 
 /**
- * Implementa��o do TAD �rvore Bin�ria.
- * @author Michael Mora, J�lio Machado, Isabel Manssour
+ * Implementaóóo do TAD órvore Binória.
+ * @author Michael Mora, Jólio Machado, Isabel Manssour
  */
 public class BinaryTreeLinkedFull <E extends Comparable<E>> implements BinaryTreeTADFull<E>, Iterable<E>, Serializable {
 	private final class Node implements Comparable<Node>, Serializable{
@@ -50,7 +50,7 @@ public class BinaryTreeLinkedFull <E extends Comparable<E>> implements BinaryTre
 		}		
 	}
 	private int count; //quantidade de nodos
-	private Node refRoot; //refer�ncia para o nodo raiz
+	private Node refRoot; //referóncia para o nodo raiz
 	
 	public BinaryTreeLinkedFull() {
 		count = 0;
@@ -200,7 +200,7 @@ public class BinaryTreeLinkedFull <E extends Comparable<E>> implements BinaryTre
 		Node n = new Node(element);
 		Node nAux = null;
 		boolean res = false;
-		//Verifica se est� inserindo na raiz
+		//Verifica se estó inserindo na raiz
 		if (father == null) {
 			if (position == NodePosition.LEFT)
 				n.setLeft(refRoot);
@@ -214,20 +214,20 @@ public class BinaryTreeLinkedFull <E extends Comparable<E>> implements BinaryTre
 			res = true;
 			count++;
 		}
-		//Insere no meio da �rvore
+		//Insere no meio da órvore
 		else {
 			nAux = searchNodeRef(father, refRoot);
 			if (nAux != null) {
 				n.setFather(nAux);
 				if (position == NodePosition.LEFT) {
-					//Insere como sub�rvore da esquerda
+					//Insere como subórvore da esquerda
 					n.setLeft(nAux.getLeft());
 					if (nAux.getLeft() != null)
 						nAux.getLeft().setFather(n);
 					nAux.setLeft(n);
 				}
 				else {
-					//Insere como sub�rvore da direita
+					//Insere como subórvore da direita
 					n.setRight(nAux.getRight());
 					if (nAux.getRight() != null)
 						nAux.getRight().setFather(n);
@@ -556,9 +556,9 @@ public class BinaryTreeLinkedFull <E extends Comparable<E>> implements BinaryTre
 	}
 	
 	//***********************************************************
-	//* Exercicios sobre estruturas em �rvores. N�o fazem parte 
-	//* da interface padr�o. N�o entregar antes de passar o 
-	//* exerc�cio.
+	//* Exercicios sobre estruturas em órvores. Nóo fazem parte 
+	//* da interface padróo. Nóo entregar antes de passar o 
+	//* exercócio.
 	//***********************************************************
 
 	public int count(E it)
@@ -945,7 +945,7 @@ public class BinaryTreeLinkedFull <E extends Comparable<E>> implements BinaryTre
 			Node nAux = null;
 			boolean res = false;
 			
-			//Verifica se est� inserindo na raiz
+			//Verifica se estó inserindo na raiz
 			if ((ref == null) || (ref == refRoot)) {
 				if (position == NodePosition.LEFT)
 					n.setLeft(refRoot);
@@ -959,20 +959,20 @@ public class BinaryTreeLinkedFull <E extends Comparable<E>> implements BinaryTre
 				res = true;
 				count++;
 			}
-			//Insere no meio da �rvore
+			//Insere no meio da órvore
 			else {
 				nAux = ref;
 				if (nAux != null) {
 					n.setFather(nAux);
 					if (position == NodePosition.LEFT) {
-						//Insere como sub�rvore da esquerda
+						//Insere como subórvore da esquerda
 						n.setLeft(nAux.getLeft());
 						if (nAux.getLeft() != null)
 							nAux.getLeft().setFather(n);
 						nAux.setLeft(n);
 					}
 					else {
-						//Insere como sub�rvore da direita
+						//Insere como subórvore da direita
 						n.setRight(nAux.getRight());
 						if (nAux.getRight() != null)
 							nAux.getRight().setFather(n);

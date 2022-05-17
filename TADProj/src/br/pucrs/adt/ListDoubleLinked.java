@@ -44,38 +44,38 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
     	Node aux, novo, prox;
     	int i;
     	
-    	if ((index >= 0) && (index <= qtdElem)) //**Posi��o � v�lida?
+    	if ((index >= 0) && (index <= qtdElem)) //**posição ó vólida?
     	{
     		novo = new Node();		//**Instancia novo nodo
     		novo.setItem(element);
     		
     		if (index == 0)				//** Deve ser o primeiro da Lista?
     		{
-    			if (refHead != null)    //** Lista est� vazia?
+    			if (refHead != null)    //** Lista estó vazia?
     				refHead.setPrev(novo);   //** Atual primeiro referencia novo primeiro como anterior
     			else
-    				refTail = novo;     	 //** Sen�o ser� o primeiro e o �ltimo
+    				refTail = novo;     	 //** Senóo seró o primeiro e o óltimo
     			
-    			novo.setNext(refHead);  //** Novo primeiro referencia atual primeiro como pr�ximo
+    			novo.setNext(refHead);  //** Novo primeiro referencia atual primeiro como próximo
     			novo.setPrev(null);
-    			refHead = novo;         //** Atualiza refer�ncia de primeiro da lista
+    			refHead = novo;         //** Atualiza referóncia de primeiro da lista
     		}
     		else 
     		{		
-    			if (index != qtdElem)   //** Novo nodo n�o ser� �ltimo?
+    			if (index != qtdElem)   //** Novo nodo nóo seró óltimo?
     			{
     				aux = refHead;		
-        			for (i = 1; i < index; i++)		//**  Procura o elemento da posi��o desejada
+        			for (i = 1; i < index; i++)		//**  Procura o elemento da posição desejada
         				aux = aux.getNext();
-        									//** Aux referencia o nodo que ser� o anterior ao novo
+        									//** Aux referencia o nodo que seró o anterior ao novo
     				prox = aux.getNext();   //** Prox referencia o nodo seguinte ao novo
     				prox.setPrev(novo);		//** Faz o nodo seguinte ao novo referenciar o novo como anterior
     			}
-    			else     //**  Nodo ser� o �ltimo
+    			else     //**  Nodo seró o óltimo
     			{
-    				aux = refTail;  //**  Aux referencia o �ltimo nodo
-    				prox = null;    //**  O novo nodo n�o ter� um nodo seguinta (ser� o �ltimo)
-    				refTail = novo; //**  O novo nodo passa a ser o �ltimo
+    				aux = refTail;  //**  Aux referencia o óltimo nodo
+    				prox = null;    //**  O novo nodo nóo teró um nodo seguinta (seró o óltimo)
+    				refTail = novo; //**  O novo nodo passa a ser o óltimo
     			}
     								//** Ajusta os encadeamentos
     			aux.setNext(novo);		//**o anterior referencia o novo como next
@@ -220,24 +220,27 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 			if (qtdElem == 0)
 				refHead = refTail = null;
 			else {
-				  if (aux == refHead) 
+				  if (aux == refHead) {
 					  refHead = refHead.getNext();
-				  else
+					  refHead.setPrev(null);
+				  }
+				  else {
 					  ant.setNext(aux.getNext());
-				
-				  if (aux == refTail)
-					  refTail = ant;
+					  if (aux == refTail)
+						  refTail = ant;
+					  else
+						  aux.getNext().setPrev(ant);
+				  }
 			}
 		}
 		
 		//return res;
-		// para for�ar o erro. Devo atualizar Prev
-		// e expandir o Test para garantir links para 
+		// para for�ar o erro. Devo expandir o Test para garantir links para 
 		// tr�s (via iteradores, em todas as implementa��es.
 		// Revisar os testesCase para garantir que cada
 		// altera��o preserva integridade, inclusive das
 		// estruturas internas.
-		return null;
+		return res;
     }
         
     public D search(D ob)

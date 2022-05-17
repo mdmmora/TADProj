@@ -5,51 +5,51 @@ import java.io.Serializable;
 
 
 /**
- * Implementa��o do TAD �rvore Bin�ria.
- * @author Michael Mora, J�lio Machado, Isabel Manssour
+ * Implementaóóo do TAD órvore Binória.
+ * @author Michael Mora, Jólio Machado, Isabel Manssour
  */
 public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD<E>, Iterable<E>, Serializable {
-	private static final class Node<T extends Comparable<T>> implements Comparable<Node<T>>, Serializable{
-		private Node<T> father;
-		private Node<T> left;
-		private Node<T> right;
-		private T item;		
-		public Node(T element) {
+	private final class Node {
+		private Node father;
+		private Node left;
+		private Node right;
+		private E item;		
+		public Node(E element) {
 			father = null;
 			left = null;
 			right = null;
 			item = element;
 		}
-		public Node<T> getRight() {
+		public Node getRight() {
 			return right;
 		}
-		public void setRight(Node<T> n) {
+		public void setRight(Node n) {
 			right = n;
 		}
-		public Node<T> getLeft() {
+		public Node getLeft() {
 			return left;
 		}
-		public void setLeft(Node<T> n) {
+		public void setLeft(Node n) {
 			left = n;
 		}
-		public Node<T> getFather() {
+		public Node getFather() {
 			return father;
 		}
-		public void setFather(Node<T> n) {
+		public void setFather(Node n) {
 			father = n;
 		}
-		public T getItem() {
+		public E getItem() {
 			return item;
 		}
-		public void setItem(T element) {
+		public void setItem(E element) {
 			item = element;
 		}
-		public int compareTo(Node<T> arg0) {
+		public int compareTo(Node arg0) {
 			return this.getItem().compareTo(arg0.getItem());
 		}		
 	}
 	private int count; //quantidade de nodos
-	private Node<E> refRoot; //refer�ncia para o nodo raiz
+	private Node refRoot; //referóncia para o nodo raiz
 	
 	public BinaryTreeLinked() {
 		count = 0;
@@ -58,16 +58,16 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 	public BinaryTreeLinked(E [] vet)
 	{
-		List <Node<E>> fila = new LinkedList<Node<E>>();
+		List <Node> fila = new LinkedList<Node>();
 		int i;
-		Node<E> novo = null, primeiro = null;
+		Node novo = null, primeiro = null;
 		NodePosition pos = null;
 
 		this.count = vet.length;
 
 		if (vet.length > 0)
 		{
-			novo = new Node<E>(vet[0]);
+			novo = new Node(vet[0]);
 			refRoot = novo;
 
 			fila.add(0, novo);
@@ -75,7 +75,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 
 			for(i = 1; i < vet.length; i++)
 			{
-				novo = new Node<E>(vet[i]);
+				novo = new Node(vet[i]);
 				fila.add(novo);
 
 				primeiro = fila.get(0);
@@ -103,7 +103,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return res;
 	}
 
-	private void traversalPre(Node<E> n, List<E> res)
+	private void traversalPre(Node n, List<E> res)
 	{
 		if (n != null) {
 			res.add(n.getItem()); //Visita o nodo
@@ -120,7 +120,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return res;
 	}
 
-	private void traversalPos(Node<E> n, List<E> res)
+	private void traversalPos(Node n, List<E> res)
 	{
 		if (n != null) {
 			traversalPos(n.getLeft(), res); //Visita a subárvore da esquerda
@@ -136,7 +136,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return res;
 	}
 
-	private void traversalCentral(Node<E> n, List<E> res)
+	private void traversalCentral(Node n, List<E> res)
 	{
 		if (n != null) {
 			traversalCentral(n.getLeft(), res); //Visita a subárvore da esquerda
@@ -147,18 +147,18 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 
 	public List<E> traversalWidth()
 	{
-		QueueTAD<Node<E>> fila = new Queue<Node<E>>();
-		Node<E> atual = null;
+		List<Node> fila = new LinkedList<Node>();
+		Node atual = null;
 		List<E> res = new ArrayList<E>();
 		if (refRoot != null) {
-			fila.enqueue(refRoot);
+			fila.add(refRoot);
 			while (!fila.isEmpty()) {
-				atual = fila.dequeue();
+				atual = fila.remove(0);
 				if (atual.getLeft() != null) {
-					fila.enqueue(atual.getLeft());
+					fila.add(atual.getLeft());
 				}
 				if (atual.getRight() != null) {
-					fila.enqueue(atual.getRight());
+					fila.add(atual.getRight());
 				}
 				res.add(atual.getItem());				
 			}
@@ -196,10 +196,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 	public boolean add(E element, E father, NodePosition position)
 	{
-		Node<E> n = new Node<E>(element);
-		Node<E> nAux = null;
+		Node n = new Node(element);
+		Node nAux = null;
 		boolean res = false;
-		//Verifica se est� inserindo na raiz
+		//Verifica se estó inserindo na raiz
 		if (father == null) {
 			if (position == NodePosition.LEFT)
 				n.setLeft(refRoot);
@@ -213,20 +213,20 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 			res = true;
 			count++;
 		}
-		//Insere no meio da �rvore
+		//Insere no meio da órvore
 		else {
 			nAux = searchNodeRef(father, refRoot);
 			if (nAux != null) {
 				n.setFather(nAux);
 				if (position == NodePosition.LEFT) {
-					//Insere como sub�rvore da esquerda
+					//Insere como subórvore da esquerda
 					n.setLeft(nAux.getLeft());
 					if (nAux.getLeft() != null)
 						nAux.getLeft().setFather(n);
 					nAux.setLeft(n);
 				}
 				else {
-					//Insere como sub�rvore da direita
+					//Insere como subórvore da direita
 					n.setRight(nAux.getRight());
 					if (nAux.getRight() != null)
 						nAux.getRight().setFather(n);
@@ -241,8 +241,8 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 
 	public boolean removeBranch(E element)
 	{
-		Node<E> nAux = null;
-		Node<E> father = null;
+		Node nAux = null;
+		Node father = null;
 		int qtdAux = 0;
 		boolean rem = false;
 		if (refRoot != null) {
@@ -286,7 +286,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 
 	public E set(E old, E element) {
 		E res = null;
-		Node<E> nAux = searchNodeRef(old, refRoot);
+		Node nAux = searchNodeRef(old, refRoot);
 		if (nAux != null) {
 			res = old;
 			nAux.setItem(element);
@@ -297,7 +297,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	public E getLeft(E element)
 	{
 		E res = null;
-		Node<E> nAux = searchNodeRef(element, refRoot);
+		Node nAux = searchNodeRef(element, refRoot);
 		if(nAux != null) {
 			if(nAux.getLeft()!=null) {
 				res = nAux.getLeft().getItem();
@@ -309,7 +309,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	public E getRight(E element)
 	{
 		E res = null;
-		Node<E> nAux = searchNodeRef(element, refRoot);
+		Node nAux = searchNodeRef(element, refRoot);
 		if(nAux != null) {
 			if(nAux.getRight()!=null) {
 				res = nAux.getRight().getItem();
@@ -321,7 +321,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	public E getFather(E element)
 	{
 		E res = null;
-		Node<E> nAux = searchNodeRef(element, refRoot);
+		Node nAux = searchNodeRef(element, refRoot);
 		if(nAux != null) {
 			if(nAux.getFather()!=null) {
 				res = nAux.getFather().getItem();
@@ -332,17 +332,17 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 	public boolean contains(E element)
 	{
-		Node<E> nAux = searchNodeRef(element, refRoot);
+		Node nAux = searchNodeRef(element, refRoot);
 		return (nAux != null);
 	}
 	
-	private Node<E> searchNodeRef(E element) {
+	private Node searchNodeRef(E element) {
 		return searchNodeRef(element, refRoot);
 	}
 	
-	private Node<E> searchNodeRef(E element, Node<E> target)
+	private Node searchNodeRef(E element, Node target)
 	{
-		Node<E> res = null;
+		Node res = null;
 		if ((target != null) && (element != null)) {
 			if(target.getItem().equals(element)) {
 				res = target;
@@ -372,7 +372,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return count(refRoot);
 	}
 
-	private int count(Node<E> n)
+	private int count(Node n)
 	{
 		if (n == null)
 			return 0;
@@ -386,7 +386,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return countLeaves(refRoot);
 	}
 
-	private int countLeaves(Node<E> n) {
+	private int countLeaves(Node n) {
 		int res = 0;
 		
 		if (n != null)		{
@@ -402,7 +402,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return countBranches(refRoot);
 	}
 
-	private int countBranches(Node<E> n) {
+	private int countBranches(Node n) {
 		int res = 0;
 		
 		if (n != null)		{
@@ -418,7 +418,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
         return height(refRoot);
     }    
     
-    private int height (Node<E> n) {
+    private int height (Node n) {
         if (n == null) 
             return -1;
         else {
@@ -444,7 +444,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
         if (refRoot == null)
             return false;
             
-        Node<E> aux = searchNodeRef(element, refRoot);
+        Node aux = searchNodeRef(element, refRoot);
         if (aux == null)
             return false;
         else if (aux.getLeft()==null && aux.getRight()==null)
@@ -459,7 +459,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
             return false;
         else if (refRoot.getItem().equals(element))
         	return false;
-        Node<E> aux = searchNodeRef(element, refRoot);
+        Node aux = searchNodeRef(element, refRoot);
         if (aux == null)
             return false;
         else if (aux.getLeft()!=null || aux.getRight()!=null)
@@ -470,10 +470,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
     
     public int level(E element)
     {
-        Node<E> aux = searchNodeRef(element, refRoot);
+        Node aux = searchNodeRef(element, refRoot);
         if (aux == null)
             return -1;    
-        Node<E> father = aux.getFather();
+        Node father = aux.getFather();
         if (father == null)
             return 0;
         else
@@ -486,7 +486,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return strTraversalPre(refRoot);
 	}
 
-	private String strTraversalPre(Node<E> n)
+	private String strTraversalPre(Node n)
 	{
 		String res = "";
 		if (n != null)
@@ -503,7 +503,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return strTraversalPos(refRoot);
 	}
 
-	private String strTraversalPos(Node<E> n)
+	private String strTraversalPos(Node n)
 	{
 		String res = "";
 		if (n != null)
@@ -520,7 +520,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return strTraversalCentral(refRoot);
 	}
 
-	private String strTraversalCentral(Node<E> n)
+	private String strTraversalCentral(Node n)
 	{
 		String res = "";
 		if (n != null)
@@ -535,18 +535,18 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 
 	public String strTraversalWidth()
 	{
-		QueueTAD<Node<E>> fila = new Queue<Node<E>>();
-		Node<E> atual = null;
+		List<Node> fila = new LinkedList<Node>();
+		Node atual = null;
 		String res = "";
 		if (refRoot != null) {
-			fila.enqueue(refRoot);
+			fila.add(refRoot);
 			while (!fila.isEmpty()) {
-				atual = fila.dequeue();
+				atual = fila.remove(0);
 				if (atual.getLeft() != null) {
-					fila.enqueue(atual.getLeft());
+					fila.add(atual.getLeft());
 				}
 				if (atual.getRight() != null) {
-					fila.enqueue(atual.getRight());
+					fila.add(atual.getRight());
 				}
 				res = res + atual.getItem();				
 			}
@@ -555,9 +555,9 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	}
 	
 	//***********************************************************
-	//* Exercicios sobre estruturas em �rvores. N�o fazem parte 
-	//* da interface padr�o. N�o entregar antes de passar o 
-	//* exerc�cio.
+	//* Exercicios sobre estruturas em órvores. Nóo fazem parte 
+	//* da interface padróo. Nóo entregar antes de passar o 
+	//* exercócio.
 	//***********************************************************
 
 	public int count(E it)
@@ -565,7 +565,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return count(it, refRoot);
 	}
 
-	private int count(E it, Node<E> n)
+	private int count(E it, Node n)
 	{
 		if ((n == null) || (it == null)) {
 			return 0;
@@ -583,7 +583,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return search(it, refRoot);
 	}
 	
-	private boolean search(E element, Node<E> target)
+	private boolean search(E element, Node target)
 	{
 		boolean res = false;
 		if ((target != null) && (element != null)) {
@@ -616,7 +616,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return res;
 	}
 	
-	private int hasRepeat(E el, Node<E> n, int cont) {
+	private int hasRepeat(E el, Node n, int cont) {
 		if (n != null) {
 			if (el.equals(n.getItem()))
 				cont ++;
@@ -637,7 +637,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return repetido.traversalCentral();
 	}
 	
-	private void allRepeat(Node<E> n, BinarySearchTreeLinked<E> primOcor, 
+	private void allRepeat(Node n, BinarySearchTreeLinked<E> primOcor, 
 							BinarySearchTreeLinked<E> repetido){
 		if (n != null) {
 			if (!primOcor.contains(n.getItem()))
@@ -655,8 +655,8 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		invLeftRight(refRoot);
 	}
 	
-	private void invLeftRight(Node<E> n){
-		Node<E> aux;
+	private void invLeftRight(Node n){
+		Node aux;
 		
 		if (n != null) {
 			aux = n.getLeft();
@@ -672,7 +672,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return getInternalElements(refRoot, new ArrayList<E>());
 	}
 	
-	private List<E> getInternalElements(Node<E> n, List<E> lst) {
+	private List<E> getInternalElements(Node n, List<E> lst) {
 		if (n != null) {
 			if ((n != refRoot) && 
 				((n.getLeft() != null) || (n.getRight() != null)))
@@ -688,7 +688,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	public int getPathSize(E element) {
 		int res = -1;
 		
-		Node<E> aux = getNodetoPathSize(element, refRoot);
+		Node aux = getNodetoPathSize(element, refRoot);
 		
 		if (aux != null)
 			while (aux != null) {
@@ -699,8 +699,8 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		return res;
 	}
 	
-	private Node<E> getNodetoPathSize(E element, Node<E> n){
-		Node<E> res = null;
+	private Node getNodetoPathSize(E element, Node n){
+		Node res = null;
 		
 		if (n != null)
 			if (element.equals(n.getItem()))
@@ -718,11 +718,11 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 	private final class IteratorWidth implements IteratorBinTree<E> {
 	
-		private QueueTAD<Node<E>> fila = new Queue<Node<E>>();
+		private List<Node> fila = new LinkedList<Node>();
 		
 		public IteratorWidth() {
 			if (refRoot != null)
-				fila.enqueue(refRoot);
+				fila.add(refRoot);
 			else
 				throw new EmptyTreeException();
 		}
@@ -738,15 +738,15 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E next() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
-			if (fila.first() != null){
-				aux = fila.dequeue();
+			if (fila.get(0) != null){
+				aux = fila.remove(0);
 				
 				if (aux.getLeft() != null)
-					fila.enqueue(aux.getLeft());
+					fila.add(aux.getLeft());
 				if (aux.getRight() != null)
-					fila.enqueue(aux.getRight());
+					fila.add(aux.getRight());
 				
 				res = aux.getItem();
 			}
@@ -760,10 +760,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E getFather() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
 			if (!fila.isEmpty()) {
-				aux = fila.first();
+				aux = fila.get(0);
 				
 				if (aux.getFather() != null)
 					res = aux.getFather().getItem();
@@ -776,10 +776,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E getElem() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
 			if (!fila.isEmpty()) {
-				aux = fila.first();
+				aux = fila.get(0);
 				
 				res = aux.getItem();
 			}
@@ -791,10 +791,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E getLeft() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
 			if (!fila.isEmpty()) {
-				aux = fila.first();
+				aux = fila.get(0);
 				
 				if (aux.getLeft() != null)
 					res = aux.getLeft().getItem();
@@ -807,10 +807,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E getRight() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
 			if (!fila.isEmpty()) {
-				aux = fila.first();
+				aux = fila.get(0);
 				
 				if (aux.getRight() != null)
 					res = aux.getRight().getItem();
@@ -825,11 +825,11 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 	private final class IteratorPre implements IteratorBinTree<E> {
 	
-		private StackTAD<Node<E>> pilha = new Stack<Node<E>>();
+		private List<Node> pilha = new LinkedList<Node>();
 		
 		public IteratorPre() {
 			if (refRoot != null)
-				pilha.push(refRoot);
+				pilha.add(0,refRoot);
 		}
 		
 		public boolean hasNext() {
@@ -843,15 +843,15 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E next() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
-			if (pilha.top() != null){
-				aux = pilha.pop();
+			if (pilha.get(0) != null){
+				aux = pilha.remove(0);
 				
 				if (aux.getRight() != null)
-					pilha.push(aux.getRight());
+					pilha.add(0,aux.getRight());
 				if (aux.getLeft() != null)
-					pilha.push(aux.getLeft());
+					pilha.add(0, aux.getLeft());
 				
 				res = aux.getItem();
 			}
@@ -865,10 +865,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E getFather() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
 			if (!pilha.isEmpty()) {
-				aux = pilha.top();
+				aux = pilha.get(0);
 				
 				if (aux.getFather() != null)
 					res = aux.getFather().getItem();
@@ -881,10 +881,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E getElem() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
 			if (!pilha.isEmpty()) {
-				aux = pilha.top();
+				aux = pilha.get(0);
 				
 				res = aux.getItem();
 			}
@@ -896,10 +896,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E getLeft() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
 			if (!pilha.isEmpty()) {
-				aux = pilha.top();
+				aux = pilha.get(0);
 				
 				if (aux.getLeft() != null)
 					res = aux.getLeft().getItem();
@@ -912,10 +912,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	
 		public E getRight() {
 			E res = null;
-			Node<E> aux;
+			Node aux;
 			
 			if (!pilha.isEmpty()) {
-				aux = pilha.top();
+				aux = pilha.get(0);
 				
 				if (aux.getRight() != null)
 					res = aux.getRight().getItem();
@@ -929,22 +929,22 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	}
 	
 	private final class Reference implements ReferenceBinTree<E> {
-		private Node<E> ref;
+		private Node ref;
 		
 		public Reference(){
 			ref = refRoot;
 		}
 		
-		public Reference(Node<E> r){
+		public Reference(Node r){
 			ref = r;
 		}
 		
 		public boolean add(E elem, NodePosition position) {
-			Node<E> n = new Node<E>(elem);
-			Node<E> nAux = null;
+			Node n = new Node(elem);
+			Node nAux = null;
 			boolean res = false;
 			
-			//Verifica se est� inserindo na raiz
+			//Verifica se estó inserindo na raiz
 			if ((ref == null) || (ref == refRoot)) {
 				if (position == NodePosition.LEFT)
 					n.setLeft(refRoot);
@@ -958,20 +958,20 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 				res = true;
 				count++;
 			}
-			//Insere no meio da �rvore
+			//Insere no meio da órvore
 			else {
 				nAux = ref;
 				if (nAux != null) {
 					n.setFather(nAux);
 					if (position == NodePosition.LEFT) {
-						//Insere como sub�rvore da esquerda
+						//Insere como subórvore da esquerda
 						n.setLeft(nAux.getLeft());
 						if (nAux.getLeft() != null)
 							nAux.getLeft().setFather(n);
 						nAux.setLeft(n);
 					}
 					else {
-						//Insere como sub�rvore da direita
+						//Insere como subórvore da direita
 						n.setRight(nAux.getRight());
 						if (nAux.getRight() != null)
 							nAux.getRight().setFather(n);
@@ -985,7 +985,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		}
 
 		public ReferenceBinTree<E> search(E elem) {
-			Node<E> res = searchNodeRef(elem, refRoot);
+			Node res = searchNodeRef(elem, refRoot);
 			
 			return new Reference(res);
 		}

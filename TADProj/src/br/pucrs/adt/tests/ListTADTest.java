@@ -213,7 +213,7 @@ public class ListTADTest {
 		assertEquals("Deve ter 6 elementos: ", 6, myList.size());
 		
 		for (int i = 0; i < myList.size(); i++)
-			assertEquals("La�o: Pega" + i, String.valueOf(i),myList.get(i));
+			assertEquals("Laóo: Pega" + i, String.valueOf(i),myList.get(i));
 		
 		assertEquals("Primeiro Elem:", "0", myList.getFirst());
 		assertEquals("Ultimo Elem:", "5", myList.getLast());
@@ -256,12 +256,12 @@ public class ListTADTest {
 		myList.addLast("6");
 		
 		res = myList.remove(0);
-		assertEquals("N�o fica vazia:", false, myList.isEmpty());
+		assertEquals("Nóo fica vazia:", false, myList.isEmpty());
 		assertEquals("6 elementos:", 6, myList.size());
 		assertEquals("Retorno: ", "0", res);
 		
 		res = myList.remove(5);
-		assertEquals("N�o fica vazia:", false, myList.isEmpty());
+		assertEquals("Nóo fica vazia:", false, myList.isEmpty());
 		assertEquals("5 elementos:", 5, myList.size());
 		assertEquals("Retorno: ", "6", res);
 		assertEquals("Retorno getLast: ", "5", myList.getLast());
@@ -270,10 +270,10 @@ public class ListTADTest {
 			assertEquals("Valor " + i, String.valueOf(i+1), myList.get(i));
 		
 		res = myList.remove(3);
-		assertEquals("N�o fica vazia:", false, myList.isEmpty());
+		assertEquals("Nóo fica vazia:", false, myList.isEmpty());
 		assertEquals("4 elementos:", 4, myList.size());
-		assertEquals("Elemento 2 � 3", "3", myList.get(2));
-		assertEquals("Elemento 3 � 5", "5", myList.get(3));
+		assertEquals("Elemento 2 ó 3", "3", myList.get(2));
+		assertEquals("Elemento 3 ó 5", "5", myList.get(3));
 		assertEquals("Retorno: ", "4", res);
 
 	}
@@ -296,7 +296,7 @@ public class ListTADTest {
 		myList.addFirst("1");
 		myList.addFirst("0");
 		res = myList.removeFirst();
-		assertEquals("N�o fica vazia:", false, myList.isEmpty());
+		assertEquals("Nóo fica vazia:", false, myList.isEmpty());
 		assertEquals("1 elementos:", 1, myList.size());
 		assertEquals("Retorno: ", "0", res);
 		assertEquals("Retorno getLast: ", "1", myList.getLast());
@@ -320,7 +320,7 @@ public class ListTADTest {
 		myList.addFirst("1");
 		myList.addFirst("0");
 		res = myList.removeLast();
-		assertEquals("N�o fica vazia:", false, myList.isEmpty());
+		assertEquals("Nóo fica vazia:", false, myList.isEmpty());
 		assertEquals("1 elementos:", 1, myList.size());
 		assertEquals("Retorno: ", "1", res);
 		assertEquals("Retorno getLast: ", "0", myList.getLast());
@@ -338,7 +338,7 @@ public class ListTADTest {
 
 		myList.addFirst("0");
 		res = myList.remove("X");
-		assertEquals("N�o fica vazia:", false, myList.isEmpty());
+		assertEquals("Nóo fica vazia:", false, myList.isEmpty());
 		assertEquals("1 elementos:", 1, myList.size());
 		assertEquals("Retorno: ", null, res);
 		assertEquals("Retorno getLast: ", "0", myList.getLast());
@@ -355,7 +355,7 @@ public class ListTADTest {
 		myList.addFirst("0");
 		myList.addFirst(x);
 		res = myList.remove("X");
-		assertEquals("N�o fica vazia:", false, myList.isEmpty());
+		assertEquals("Nóo fica vazia:", false, myList.isEmpty());
 		assertEquals("1 elementos:", 1, myList.size());
 		assertSame("Retorno: ", x, res);
 		assertEquals("Retorno getLast: ", "0", myList.getLast());
@@ -365,23 +365,23 @@ public class ListTADTest {
 		myList.addLast("3");
 		myList.addLast(x2);
 		res = myList.remove("X");
-		assertEquals("N�o fica vazia:", false, myList.isEmpty());
+		assertEquals("Nóo fica vazia:", false, myList.isEmpty());
 		assertEquals("4 elementos:", 4, myList.size());
 		assertSame("Retorno: ", x1, res);
 		assertSame("Retorno getLast: ", x2, myList.getLast());
 		
 		res = myList.remove("X");
-		assertEquals("N�o fica vazia:", false, myList.isEmpty());
+		assertEquals("Nóo fica vazia:", false, myList.isEmpty());
 		assertEquals("3 elementos:", 3, myList.size());
 		assertSame("Retorno: ", x2, res);
-		assertEquals("�ltimo: ", "3", myList.getLast());
+		assertEquals("óltimo: ", "3", myList.getLast());
 	}
 
 	@Test
 	public final void testIsEmpty() {
 		assertEquals("Deve estar vazia: ", true, myList.isEmpty());
 		myList.add("0");
-		assertEquals("N�o deve estar vazia: ", false, myList.isEmpty());
+		assertEquals("Nóo deve estar vazia: ", false, myList.isEmpty());
 		myList.remove(0);
 		assertEquals("Deve estar vazia: ", true, myList.isEmpty());
 	}

@@ -41,7 +41,7 @@ public interface GraphTAD<N, A> extends IterableGraph<N>{
 	public abstract List<N> findPath(N orig, N dest);
 
 	/**
-	 * Retorna o n�mero de nodos de um grafo.
+	 * Retorna o nómero de nodos de um grafo.
 	 */
 	public abstract int size();
 

@@ -2,11 +2,11 @@ package br.pucrs.adt;
 
 import java.util.*;
 /**
- * Implementa��o do TAD Grafos utilizando listas de adjac�ncias.
- * Esta implementa��o da lista de adjac�ncias aponta para a inst�ncia do nodo armazenada
+ * Implementaóóo do TAD Grafos utilizando listas de adjacóncias.
+ * Esta implementaóóo da lista de adjacóncias aponta para a instóncia do nodo armazenada
  * no Grafo Dirigido. 
  * @author Michael Mora
- * @param <Dado> Classe dos dados que ser�o armazenados nos nodos do grafo.
+ * @param <Dado> Classe dos dados que seróo armazenados nos nodos do grafo.
  */
 public class GrafoDirLstAdj<Dado extends Comparable<Dado>, Rotulo extends Comparable<Dado>> implements TADGraphNRot<Dado, Rotulo> {
 	private class Edge{
@@ -144,7 +144,7 @@ public class GrafoDirLstAdj<Dado extends Comparable<Dado>, Rotulo extends Compar
 		if ((indexOri >= 0 ) && (indexDest >= 0))
 			nodeList.get(indexOri).addEdge(nodeList.get(indexDest), label);
 		else
-			throw new IllegalArgumentException("Nodo n�o encontrado"
+			throw new IllegalArgumentException("Nodo nóo encontrado"
 					  + "Nodo Origem = " + indexOri
 					  + " Nodo Destino = " + indexDest);
 	}

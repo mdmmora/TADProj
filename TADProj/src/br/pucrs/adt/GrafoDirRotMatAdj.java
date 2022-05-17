@@ -4,10 +4,10 @@ import java.util.*;
 
 
 /******
- * Implementa��o de um Grafo Dirigido e Rotulado utilizando Matriz de Adjac�ncias.
- * Esta implementa��o suporta apenas uma aresta entre um determinado par de nodos.
- * @param N - Gen�rico. Tipo do nodo do grafo
- * @param A - Gen�rico. Tipo do r�tulo da aresta do grafo
+ * Implementaóóo de um Grafo Dirigido e Rotulado utilizando Matriz de Adjacóncias.
+ * Esta implementaóóo suporta apenas uma aresta entre um determinado par de nodos.
+ * @param N - Genórico. Tipo do nodo do grafo
+ * @param A - Genórico. Tipo do rótulo da aresta do grafo
  * @author CAA
  * @version 1.0
  */
@@ -228,8 +228,8 @@ public class GrafoDirRotMatAdj<N, A> {
 	result.add(orig);
 	orig.marca();
 
-	PARA CADA VIZINHO N�O MARCADO v DE orig
-	FA�A dfsAux(v, result);
+	PARA CADA VIZINHO NóO MARCADO v DE orig
+	FAóA dfsAux(v, result);
 	 ***********************************/
 
 	/* (non-Javadoc)
@@ -271,13 +271,13 @@ public class GrafoDirRotMatAdj<N, A> {
 	fAux.offer(orig);
 	orig.marca();
 
-	ENQUANTO (fAux n�o est� vazia)
-	FA�A {
+	ENQUANTO (fAux nóo estó vazia)
+	FAóA {
 	      nAux = fAux.poll();
 	      result.enqueue(nAux);
 
-	      PARA CADA VIZINHO N�O MARCADO v DE nAUX
-	      FA�A {v.marca();
+	      PARA CADA VIZINHO NóO MARCADO v DE nAUX
+	      FAóA {v.marca();
 	      		fAux.offer(v);}
 	     }
 	 RETORNA result
@@ -318,26 +318,26 @@ public class GrafoDirRotMatAdj<N, A> {
 
 	/**********************************
 	Algo: Dijkstra  -  SSSP(G, v)
-	Entrada: G - grafo n�o dirigido e valorado, com valores num�ricos n�o negativos
+	Entrada: G - grafo nóo dirigido e valorado, com valores numóricos nóo negativos
 	               v -  nodo de origem
-	Sa�da: Um valor D[u], para cada v�rtice u de G, tal que D[u]
-		� o tamanho do menor caminho de v at� u em G
+	Saóda: Um valor D[u], para cada vórtice u de G, tal que D[u]
+		ó o tamanho do menor caminho de v ató u em G
 
 	Inicialize D[v] = 0 e D[u] = +infinito para cada u!=v
-	FilaPrioridade Q = todos os v�rtices u de G usando os labels D[u] como chave
+	FilaPrioridade Q = todos os vórtices u de G usando os labels D[u] como chave
 
-	ENQUANTO Q n�o vazia {
+	ENQUANTO Q nóo vazia {
 		u  = Q.removeMin();
 
-		PARA CADA v�rtice z adjacente � u tal que z est� em Q
-		FA�A {
+		PARA CADA vórtice z adjacente ó u tal que z estó em Q
+		FAóA {
 			SE D[u] + valor((u,z))  <  D[z]
-			ENT�O D[z] = D[u] + valor((u,z))
+			ENTóO D[z] = D[u] + valor((u,z))
 
-			Troque para D[z] a chave do v�rtice z em Q
+			Troque para D[z] a chave do vórtice z em Q
 		      }
 		}
-	RETORNE o r�tulo D[u] de cada v�rtice u
+	RETORNE o rótulo D[u] de cada vórtice u
 	 **********************************/
 //==> To review
 //
@@ -348,13 +348,13 @@ public class GrafoDirRotMatAdj<N, A> {
 //		PQNodeDijkstra<Integer, Double> uNode;
 //
 //		//Inicializa a tabela de pesos e
-//		//Inicializa Priority Queue. Nesta implementa��o
-//		//  os pesos est�o junto do elemento na PriorityQueue, al�m de
+//		//Inicializa Priority Queue. Nesta implementaóóo
+//		//  os pesos estóo junto do elemento na PriorityQueue, alóm de
 //		//  estarem em um ArrayList separado
 //		//
 //		//No algoritmo:
 //		//Inicialize D[v] = 0 e D[u] = +infinito para cada u!=v
-//		//FilaPrioridade Q = todos os v�rtices u de G usando os labels D[u] como chave
+//		//FilaPrioridade Q = todos os vórtices u de G usando os labels D[u] como chave
 //		for (int i = 0; i < nodeList.size(); i++)
 //			if (i != indexOrig) {
 //				queue.offer(new PQNodeDijkstra<Integer, Double>(i, Double.MAX_VALUE));
@@ -369,9 +369,9 @@ public class GrafoDirRotMatAdj<N, A> {
 //			uNode = queue.poll();
 //
 //			for (int colAdjacente = 0; colAdjacente < nodeList.size(); colAdjacente++)    // Percorrendo a coluna da Matriz para achar adjacentes
-//				if (matAdj[uNode.getNodePos()][colAdjacente] != null)   //    Achou uma aresta -> � adejacente.
-//					for (PQNodeDijkstra<Integer, Double> n:queue)  //  Verificando se o adjacente est� la fila de nodos n�o resolvidos
-//						if (n.getNodePos() == colAdjacente) {  // Sim, est�! Tenta relaxar o nodo -> acertar peso e nodo anterior, se for o caso.
+//				if (matAdj[uNode.getNodePos()][colAdjacente] != null)   //    Achou uma aresta -> ó adejacente.
+//					for (PQNodeDijkstra<Integer, Double> n:queue)  //  Verificando se o adjacente estó la fila de nodos nóo resolvidos
+//						if (n.getNodePos() == colAdjacente) {  // Sim, estó! Tenta relaxar o nodo -> acertar peso e nodo anterior, se for o caso.
 //							Double pesoNodoCorrente = uNode.getNodeWeight();
 //							int posicaoNodoCorrente = uNode.getNodePos();
 //							N elementoNodoAdjacente = nodeList.get(colAdjacente).getElem();
@@ -453,9 +453,9 @@ public class GrafoDirRotMatAdj<N, A> {
 
 
 	//***********************************************************
-	//* Exercicios sobre estruturas em grafos. N�o fazem parte
-	//* da interface padr�o. N�o entregar antes de passar o
-	//* exerc�cio.
+	//* Exercicios sobre estruturas em grafos. Nóo fazem parte
+	//* da interface padróo. Nóo entregar antes de passar o
+	//* exercócio.
 	//***********************************************************
 
 	public int countReachable(N elem) {
