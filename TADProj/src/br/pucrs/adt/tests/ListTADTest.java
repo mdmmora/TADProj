@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.*;
 
 import br.pucrs.adt.ListArray;
-import br.pucrs.adt.ListDoubleLinked;
-import br.pucrs.adt.ListSimpleLinkedFull;
+// import br.pucrs.adt.ListDoubleLinked;
+// import br.pucrs.adt.ListSimpleLinkedFull;
 import br.pucrs.adt.ListTAD;
 
 public class ListTADTest {
 
-	private ListTAD<String> myList = new ListSimpleLinkedFull<String>();
+	private ListTAD<String> myList = new ListArray<String>(200);
 	//private ListTAD<String> myList = new ListDoubleLinked<String>();
 	//private ListArray<String> myList = new ListArray<String>(10);
 	
@@ -46,7 +46,7 @@ public class ListTADTest {
 		myList.add("2");
 		myList.add("3");
 		myList.add("4");
-		assertEquals("0 1 2 3 4 ", myList.toString());
+		assertEquals("01234", myList.toString());
 		assertEquals("Ultimo Elem:", "4", myList.getLast());
 	}
 
@@ -220,17 +220,17 @@ public class ListTADTest {
 
 	}
 
-	@Test(expected=IndexOutOfBoundsException.class)
+	@Test(expected=IllegalArgumentException.class)
 	public final void testRemoveInt1() {
 		myList.remove(0);
 	}
 
-	@Test(expected=IndexOutOfBoundsException.class)
+	@Test(expected=IllegalArgumentException.class)
 	public final void testRemoveInt2() {
 		myList.remove(-1);
 	}
 
-	@Test(expected=IndexOutOfBoundsException.class)
+	@Test(expected=IllegalArgumentException.class)
 	public final void testRemoveInt3() {
 		myList.addFirst("0");
 		myList.remove(1);

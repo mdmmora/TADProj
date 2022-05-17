@@ -1,40 +1,12 @@
 package br.pucrs.adt;
 import java.io.Serializable;
+import java.security.InvalidParameterException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ListArray <D extends Comparable<D>> implements ListTAD<D>, Serializable {
+public class ListArray <D> implements ListTAD<D>, Serializable {
 	private D [] vet;
 	private int qtdElem = 0;
-	private int corrente = -1;
-	
-	private class Iterador implements Iterator<D>{
-        private int position = 0;
-
-        public boolean hasNext() { return (position != qtdElem); }
-        
-        public D next() {
-            if(position == qtdElem)
-                throw new NoSuchElementException();
-            D item = vet[position];
-            position++;
-            return item;
-        }
-
-        public void remove() { throw new UnsupportedOperationException();  }
-    }
-
-	public Iterator<D> iterator() {
-		return new Iterador();
-	}
-	private void increaseVet()
-	{
-		D[] newVet = (D[]) new Comparable[(int)(vet.length * 1.5)];
-		
-		System.arraycopy(vet, 0, newVet, 0, vet.length);
-		
-		vet = newVet;
-	}
 	
 	public ListArray(int n)
 	{
@@ -50,7 +22,6 @@ public class ListArray <D extends Comparable<D>> implements ListTAD<D>, Serializ
 		if ((index >= 0) && (index < this.size()))
 			{
 				vet[index] = elem;
-				corrente = index;
 			}
 		else
 			throw new IndexOutOfBoundsException();
@@ -63,7 +34,6 @@ public class ListArray <D extends Comparable<D>> implements ListTAD<D>, Serializ
 		if ((index >= 0) && (index < this.size()))
 			{
 				res = vet[index];
-				corrente = index;
 			}
 		else
 			throw new IndexOutOfBoundsException();
@@ -76,7 +46,7 @@ public class ListArray <D extends Comparable<D>> implements ListTAD<D>, Serializ
 		int i;
 		
 		if (this.size() == vet.length)
-			increaseVet();
+			throw new InvalidParameterException("Lista Cheia"); 
 		
 		if ((index >= 0) && (index <= this.size()))
 		{
@@ -84,16 +54,19 @@ public class ListArray <D extends Comparable<D>> implements ListTAD<D>, Serializ
 				vet[i] = vet[i-1];
 			
 			vet[index] = elem;
-			corrente = index;
 			qtdElem++;
 		}
 		else
-			throw new IndexOutOfBoundsException();
+			throw new IllegalArgumentException();
 	}
 	
 	public void add(D elem)
 	{
-		this.add(this.size(), elem);
+		if (this.size() == vet.length)
+			throw new InvalidParameterException("Lista Cheia"); 
+
+		vet[qtdElem] = elem;
+		qtdElem++;
 	}
 	
 	public D remove(int index)
@@ -108,11 +81,10 @@ public class ListArray <D extends Comparable<D>> implements ListTAD<D>, Serializ
 			for (i = index; i < this.size()-1; i++)
 				vet[i] = vet[i+1];
 			
-			corrente = -1;
 			qtdElem--;
 		}
 		else
-			throw new IndexOutOfBoundsException();
+			throw new IllegalArgumentException();
 	
 		return res;
 	}
@@ -124,19 +96,6 @@ public class ListArray <D extends Comparable<D>> implements ListTAD<D>, Serializ
 		if (this.size() == 0)
 			res = true;
 		
-		return res;
-	}
-	
-	public D getNext()
-	{
-		D res = null;  
-		
-		if ((corrente >= 0) && (corrente < this.size()-1))
-			{
-				corrente = corrente + 1;
-				res = vet[corrente];
-			}
-
 		return res;
 	}
 	
