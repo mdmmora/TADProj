@@ -4,16 +4,16 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import br.pucrs.adt.ListArray;
+// import br.pucrs.adt.ListArray;
 // import br.pucrs.adt.ListDoubleLinked;
-// import br.pucrs.adt.ListSimpleLinkedFull;
+import br.pucrs.adt.ListSimpleLinked;
 import br.pucrs.adt.ListTAD;
 
 public class ListTADTest {
 
-	private ListTAD<String> myList = new ListArray<String>(200);
+	// private ListTAD<String> myList = new ListArray<String>(200);
 	//private ListTAD<String> myList = new ListDoubleLinked<String>();
-	//private ListArray<String> myList = new ListArray<String>(10);
+	private ListTAD<String> myList = new ListSimpleLinked<String>();
 	
 	@Before
 	public void limpaLst() {
@@ -220,17 +220,17 @@ public class ListTADTest {
 
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=IndexOutOfBoundsException.class)
 	public final void testRemoveInt1() {
 		myList.remove(0);
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=IndexOutOfBoundsException.class)
 	public final void testRemoveInt2() {
 		myList.remove(-1);
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected=IndexOutOfBoundsException.class)
 	public final void testRemoveInt3() {
 		myList.addFirst("0");
 		myList.remove(1);

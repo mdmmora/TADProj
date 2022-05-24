@@ -60,7 +60,7 @@ public interface ListTAD<E> {
 	 * @param element Elemento a ser procurado.
 	 * @return referóncia para o elemento armazenado na lista. 
 	 */	
-	public E search(E element);
+	// public E search(E element);
 	
 	
 	/**********
