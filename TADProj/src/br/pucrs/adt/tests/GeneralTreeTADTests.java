@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class GeneralTreeTADTests {
-	private GeneralTreeTAD<String> arv;
+	private GeneralTreeFullTAD<String> arv;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

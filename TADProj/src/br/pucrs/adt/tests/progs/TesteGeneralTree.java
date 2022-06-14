@@ -1,6 +1,6 @@
 package br.pucrs.adt.tests.progs;
-import br.pucrs.adt.GeneralTreeLinked;
-import br.pucrs.adt.GeneralTreeTAD;
+import br.pucrs.adt.GeneralTreeLinkedFull;
+import br.pucrs.adt.GeneralTreeFullTAD;
 
 
 public class TesteGeneralTree {
@@ -9,7 +9,7 @@ public class TesteGeneralTree {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		GeneralTreeLinked<String> arvore = new GeneralTreeLinked<String>();
+		GeneralTreeLinkedFull<String> arvore = new GeneralTreeLinkedFull<String>();
 		arvore.add("A", null);
 		arvore.add("B", "A");
 		arvore.add("C", "A");

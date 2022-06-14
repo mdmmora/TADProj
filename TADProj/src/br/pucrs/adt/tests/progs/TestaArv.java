@@ -24,7 +24,7 @@ public class TestaArv {
 //		ObjectInputStream oEntrada = null;
 
 
-		GeneralTreeLinked <String> arv1 = new GeneralTreeLinked<String>();
+		GeneralTreeLinkedFull <String> arv1 = new GeneralTreeLinkedFull<String>();
 		String res;
 		List<String> resVet;
 
