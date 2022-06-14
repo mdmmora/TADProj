@@ -9,7 +9,7 @@ public class ListSimpleLinked <D> implements ListTAD<D> {
 	 * 
 	 */
 
-	public class Node  {		
+	private class Node  {		
 
 		private Node refNext;
 		private D item;
