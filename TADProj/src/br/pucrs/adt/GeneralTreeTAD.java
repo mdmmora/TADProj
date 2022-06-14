@@ -3,70 +3,70 @@ package br.pucrs.adt;
 import java.util.List;
 
 /**
- * Interface que descreve o TAD Árvore Geral.
- * @author Michael Mora, Júlio Machado, Isabel Manssour
+ * Interface que descreve o TAD ï¿½rvore Geral.
+ * @author Michael Mora, Jï¿½lio Machado, Isabel Manssour
  */
 
 public interface GeneralTreeTAD<E extends Comparable<E>> {
 	/**
-	 * Verifica se Árvore está vazia.
-	 * @return true se a Árvore está vazia, false caso contrário. 
+	 * Verifica se ï¿½rvore estï¿½ vazia.
+	 * @return true se a ï¿½rvore estï¿½ vazia, false caso contrï¿½rio. 
 	 */
 	boolean isEmpty();
 	
 	/**
-	 * Recupera a quantidade de nodos da árvore através de cálculo recursivo.
-	 * @return número de nodos. 
+	 * Recupera a quantidade de nodos da ï¿½rvore atravï¿½s de cï¿½lculo recursivo.
+	 * @return nï¿½mero de nodos. 
 	 */	
 	int count();
 	
 	/**
-	 * Recupera o dado armazenado na raiz da árvore.
-	 * @return dado armazenado na raiz da árvore. 
-	 * @throws EmptyTreeException se a árvore está vazia.
+	 * Recupera o dado armazenado na raiz da ï¿½rvore.
+	 * @return dado armazenado na raiz da ï¿½rvore. 
+	 * @throws EmptyTreeException se a ï¿½rvore estï¿½ vazia.
 	 */
 	E getRoot();
 	
 	/**
-	 * Altera o dado armazenado na raiz da árvore
-	 * @param element dado a ser armazenado na raiz da árvore
-	 * @throws EmptyTreeException se a árvore está vazia.
+	 * Altera o dado armazenado na raiz da ï¿½rvore
+	 * @param element dado a ser armazenado na raiz da ï¿½rvore
+	 * @throws EmptyTreeException se a ï¿½rvore estï¿½ vazia.
 	 */
 	void setRoot(E element);
 	
 	/**
-	 * Adiciona um novo nodo na árvore como filho de um nodo pai.
+	 * Adiciona um novo nodo na ï¿½rvore como filho de um nodo pai.
 	 * @param element Novo nodo a ser inserido.	
-	 * @param father  Nodo apÃ³s o qual será inserido o novo nodo, se null entÃ£o insere na raiz.
+	 * @param father  Nodo apÃ³s o qual serï¿½ inserido o novo nodo, se null entÃ£o insere na raiz.
 	 * @return true se o elemento foi inserido
 	 */
 	boolean add(E element, E father);
 	
 	/**
-	 * Remove o nodo da árvore, juntamente com todos os seus filhos.
+	 * Remove o nodo da ï¿½rvore, juntamente com todos os seus filhos.
 	 * @param element ReferÃªncia para o dado a ser removido.
-	 * @return true se a árvore contÃ©m o elemento especificado.
+	 * @return true se a ï¿½rvore contÃ©m o elemento especificado.
 	 */
 	boolean removeBranch(E element);
 	
 	/**
-	 * Recupera o dado armazenado no i-esimo filho do nodo da árvore
+	 * Recupera o dado armazenado no i-esimo filho do nodo da ï¿½rvore
 	 * @param element elemento do nodo pai.
 	 * @return dado armazenado no i-esimo filho do nodo informado. 
 	 */
 	E get(E element, int i);
 		
 	/**
-	 * Recupera o dado armazenado no pai do nodo da árvore
+	 * Recupera o dado armazenado no pai do nodo da ï¿½rvore
 	 * @param element ReferÃªncia para o nodo a ser buscado.
 	 * @return dado armazenado no pai do nodo informado. 
 	 */
 	E getFather(E element);
 	
     /**
-     * Retorna true se a árvore contÃ©m o elemento especificado
+     * Retorna true se a ï¿½rvore contÃ©m o elemento especificado
      * @param element o elemento a ser buscado
-     * @return true se a árvore contÃ©m o elemento especificado
+     * @return true se a ï¿½rvore contÃ©m o elemento especificado
      */
     boolean contains(E element); 
 	
@@ -74,25 +74,25 @@ public interface GeneralTreeTAD<E extends Comparable<E>> {
      * Substitui a primeira ocorrÃªncia do elemento indicado por um novo elemento
      * @param old elemento a ser substituÃ­do
      * @param element novo elemento
-     * @return elemento que foi substituÃ­do ou null se o elemento nÃ£o está na árvore
+     * @return elemento que foi substituÃ­do ou null se o elemento nÃ£o estï¿½ na ï¿½rvore
      */
     E set(E old, E element);
     
 	/**
-	 * Percorre a árvore em prÃ©-ordem, retornando seus elementos. 	
-	 * @return Lista com os nodos da árvore em prÃ©-ordem.
+	 * Percorre a ï¿½rvore em prÃ©-ordem, retornando seus elementos. 	
+	 * @return Lista com os nodos da ï¿½rvore em prÃ©-ordem.
 	 */
 	List<E> traversalPre();
 	
 	/**
-	 * Percorre a árvore em pÃ³s-ordem, retornando seus elementos. 	
-	 * @return Lista com os nodos da árvore em pÃ³s-ordem.
+	 * Percorre a ï¿½rvore em pÃ³s-ordem, retornando seus elementos. 	
+	 * @return Lista com os nodos da ï¿½rvore em pÃ³s-ordem.
 	 */
 	List<E> traversalPos();
 		
 	/**
-	 * Percorre a árvore em amplitude, retornando seus elementos. 	
-	 * @return Lista com os nodos da árvore, ordenados nÃ©vel a nÃ­vel, da esquerda para direita. 
+	 * Percorre a ï¿½rvore em amplitude, retornando seus elementos. 	
+	 * @return Lista com os nodos da ï¿½rvore, ordenados nÃ©vel a nÃ­vel, da esquerda para direita. 
 	 */
 	List<E> traversalWidth();	
 }

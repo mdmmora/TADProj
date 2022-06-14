@@ -1,11 +1,10 @@
 package br.pucrs.adt;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GeneralTreeLinked<E extends Comparable<E>> implements GeneralTreeTAD<E>, Iterable<E>
+public class GeneralTreeLinked<E extends Comparable<E>> implements GeneralTreeTAD<E>
 {
 	private Node refRoot;
 
@@ -53,98 +52,7 @@ public class GeneralTreeLinked<E extends Comparable<E>> implements GeneralTreeTA
 		}
 	}
 
-	private final class IteratorWidth implements IteratorGeneralTree<E> {
-		private QueueTAD<Node> fila = new Queue<Node>();
-
-		public IteratorWidth() {
-			if (refRoot != null)
-				fila.enqueue(refRoot);
-			else
-				throw new EmptyTreeException();
-		}
-
-		public boolean hasNext() {
-			boolean res = false;
-
-			if (!fila.isEmpty())
-				res = true;
-
-			return res;
-		}
-
-		public E next() {
-			E res = null;
-			Node aux, filAux;
-			int totFil;
-
-			if (fila.first() != null){
-				aux = fila.dequeue();
-
-				totFil = aux.countSubtrees();
-				for (int i = 0; i < totFil; i++) {
-					filAux = aux.getSubtree(i);
-					if (filAux != null)
-						fila.enqueue(filAux);
-				}
-
-				res = aux.getItem();
-			}
-
-			return res;
-		}
-
-		public void remove() {
-			throw new UnsupportedOperationException();
-		}
-
-		public E getFather() {
-			E res = null;
-			Node aux;
-
-			if (!fila.isEmpty()) {
-				aux = fila.first();
-
-				if (aux.getFather() != null)
-					res = aux.getFather().getItem();
-			}
-			else
-				throw new EmptyTreeException();
-
-			return res;
-		}
-
-		public E getElem() {
-			E res = null;
-			Node aux;
-
-			if (!fila.isEmpty()) {
-				aux = fila.first();
-
-				res = aux.getItem();
-			}
-			else
-				throw new EmptyTreeException();
-
-			return res;
-		}
-
-		public E getChild(int id) {
-			E res = null;
-			Node aux;
-
-			if (!fila.isEmpty()) {
-				aux = fila.first();
-
-				if (id <= aux.countSubtrees()) 
-					res = aux.getSubtree(id).getItem();
-			}
-			else
-				throw new EmptyTreeException();
-
-			return res;
-		}		
-	}
-
+	
 	public GeneralTreeLinked()
 	{
 		refRoot = null;
@@ -303,28 +211,6 @@ public class GeneralTreeLinked<E extends Comparable<E>> implements GeneralTreeTA
 		return total;
 	}
 
-	public Iterator<E> iterator() {
-		Iterator<E> it = new IteratorWidth();
-
-		return it;
-	}
-
-	public Iterator<E> iterator(IteratorTreeType t){
-		Iterator<E> it = null;
-
-		if (t.equals(IteratorTreeType.WIDTH)) 
-			it = new IteratorWidth();
-		else if (t.equals(IteratorTreeType.POST))
-			it = null;
-		else if (t.equals(IteratorTreeType.PRE))
-			it = null;
-		else if (t.equals(IteratorTreeType.CENTRAL))
-			it = null;
-
-		return it;
-	}
-
-
 	public List<E> traversalPos()
 	{
 		List<E> res = new ArrayList<E>();
@@ -375,9 +261,9 @@ public class GeneralTreeLinked<E extends Comparable<E>> implements GeneralTreeTA
 	}    
 
 	//***********************************************************
-	//* Exercicios sobre estruturas em árvores. Não fazem parte 
-	//* da interface padrão. Não entregar antes de passar o 
-	//* exercício.
+	//* Exercicios sobre estruturas em ï¿½rvores. Nï¿½o fazem parte 
+	//* da interface padrï¿½o. Nï¿½o entregar antes de passar o 
+	//* exercï¿½cio.
 	//***********************************************************
 
 	public boolean hasRepeat(E el) { 
