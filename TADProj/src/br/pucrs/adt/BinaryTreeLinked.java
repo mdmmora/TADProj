@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Implementaóóo do TAD órvore Binória.
  * @author Michael Mora, Jólio Machado, Isabel Manssour
  */
-public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD<E>, Iterable<E>, Serializable {
+public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD<E> {
 	private final class Node {
 		private Node father;
 		private Node left;
@@ -165,34 +165,6 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		}
 		return res;
 	}
-
-	
-	public Iterator<E> iterator() {
-		Iterator<E> it = new IteratorPre();
-		
-		return it;
-	}
-	
-	public Iterator<E> iterator(IteratorTreeType t){
-		Iterator<E> it = null;
-		
-		if (t.equals(IteratorTreeType.WIDTH)) 
-			it = new IteratorWidth();
-		else if (t.equals(IteratorTreeType.POST))
-			it = null;
-		else if (t.equals(IteratorTreeType.PRE))
-			it = new IteratorPre();
-		else if (t.equals(IteratorTreeType.CENTRAL))
-			it = null;
-		
-		return it;
-		}
-	
-	public ReferenceBinTree<E> reference() {
-		ReferenceBinTree<E> ref = new Reference();
-		
-		return ref;
-	}
 	
 	public boolean add(E element, E father, NodePosition position)
 	{
@@ -334,10 +306,6 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	{
 		Node nAux = searchNodeRef(element, refRoot);
 		return (nAux != null);
-	}
-	
-	private Node searchNodeRef(E element) {
-		return searchNodeRef(element, refRoot);
 	}
 	
 	private Node searchNodeRef(E element, Node target)

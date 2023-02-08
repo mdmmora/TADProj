@@ -358,64 +358,54 @@ public class GeneralTreeLinked<E extends Comparable<E>> implements GeneralTreeTA
 	public String toString() {
 		StringBuilder str = new StringBuilder("");
 		String res;
-		int level = 0;
 
 		if (refRoot == null)
 			res = null;
 		else {
-//			toStringFunc(refRoot, str, level);
-			toStringFunc(refRoot, str);
+			toStringFunc(refRoot, str, 0);
+			// toStringFunc(refRoot, str);
 			res = str.toString();
 		}
 		return res;
 	}
 
-//	private void toStringFunc(Node<E> n, StringBuilder str, int level) {
-//		String tabs;
-//		
-//		if (n != null){
-//			str.append("tree(");
-//			str.append(n.getItem());
-//
-//			level++;
-//			for (int i = 0; i < n.subtrees.size(); i++){
-//				str.append(",");
-//				if (i == 0) {
-//					str.append("\n");
-//					tabs = tabFill(level);
-////					str.append("\n");
-//					str.append(tabs);
-//				}
-//				toStringFunc(n.subtrees.get(i), str, level);
-//			}
-//			
-//			level--;
-//			str.append(")");
-////			str.append(",");
-//			tabs = tabFill(level);
-////			str.append("\n");
-////			str.append(tabs);
-//
-//		}
-//	}
-	
-	private void toStringFunc(Node n, StringBuilder str) {
+	private void toStringFunc(Node n, StringBuilder str, int level) {
+		String tabs;
+		
 		if (n != null){
 			str.append(n.getItem());
+			str.append(": ");
 
+			level++;
+			tabs = tabFill(level);
 			for (int i = 0; i < n.subtrees.size(); i++){
-				str.append(",");
-				toStringFunc(n.subtrees.get(i), str);
+				str.append("\n");
+				str.append(tabs);
+
+				toStringFunc(n.subtrees.get(i), str, level);
 			}
 		}
 	}
+	
+	// private void toStringFunc(Node n, StringBuilder str) {
+	// 	if (n != null){
+	// 		str.append(n.getItem());
+
+	// 		for (int i = 0; i < n.subtrees.size(); i++){
+	// 			str.append(",");
+	// 			toStringFunc(n.subtrees.get(i), str);
+	// 		}
+	// 	}
+	// }
 	
 	
 	String tabFill(int level) {
 		String res = "";
 		
-		for (int i = 0; i <= level; i++)
-			res += "   ";
+		int i;
+		for (i = 0; i <= level - 1 + (level * 3); i++)
+			res += " ";
+		res += "|---";
 		
 		return res;
 	}

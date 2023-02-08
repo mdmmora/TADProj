@@ -4,10 +4,10 @@ package br.pucrs.adt.tests.progs;
 //import OldTrees.TreeTAD;
 import br.pucrs.adt.*;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+// import java.io.FileInputStream;
+// import java.io.FileOutputStream;
+// import java.io.ObjectInputStream;
+// import java.io.ObjectOutputStream;
 import java.util.*;
 
 
@@ -17,7 +17,6 @@ public class TestaArv {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 //		FileOutputStream saida = null;
 //		ObjectOutputStream oSaida = null;
 //		FileInputStream entrada = null;

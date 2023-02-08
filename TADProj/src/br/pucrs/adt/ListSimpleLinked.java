@@ -4,13 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class ListSimpleLinked <D> implements ListTAD<D> {
-
-	/**
-	 * 
-	 */
-
 	private class Node  {		
-
 		private Node refNext;
 		private D item;
 

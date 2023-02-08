@@ -1,6 +1,6 @@
 package br.pucrs.adt.tests.progs;
-import br.pucrs.adt.GeneralTreeLinkedFull;
-import br.pucrs.adt.GeneralTreeFullTAD;
+import br.pucrs.adt.GeneralTreeLinked;
+import br.pucrs.adt.GeneralTreeTAD;
 
 
 public class TesteGeneralTree {
@@ -9,7 +9,7 @@ public class TesteGeneralTree {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		GeneralTreeLinkedFull<String> arvore = new GeneralTreeLinkedFull<String>();
+		GeneralTreeTAD<String> arvore = new GeneralTreeLinked<String>();
 		arvore.add("A", null);
 		arvore.add("B", "A");
 		arvore.add("C", "A");
@@ -29,13 +29,13 @@ public class TesteGeneralTree {
 		arvore.add("Q", "H");
 		arvore.add("R", "H");
 		
-//		System.out.println("To String \n" + arvore.toString());
+		System.out.println("To String \n" + arvore.toString());
 //		System.out.println(arvore.count());
 //		System.out.println("Pre-ordem:" + arvore.traversalPre());
 //		System.out.println("Pos-ordem:" + arvore.traversalPos());
-		System.out.println("Largura:" + arvore.traversalWidth());
-		arvore. removeBranch("H");
-		System.out.println("Largura:" + arvore.traversalWidth());
+		// System.out.println("Largura:" + arvore.traversalWidth());
+		// arvore. removeBranch("H");
+		// System.out.println("Largura:" + arvore.traversalWidth());
 //		
 //		System.out.println("Amplitude com iterador: ");
 //		for (String s:arvore) 

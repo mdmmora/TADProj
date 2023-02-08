@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GeneralTreeLinkedFull<E extends Comparable<E>> implements GeneralTreeFullTAD<E>, Iterable<E>
+public class GeneralTreeLinkedFull<E extends Comparable<E>> implements GeneralTreeTAD<E>, Iterable<E>
 {
 	private Node refRoot;
 
